@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高校数学 数I・A・II・B 学習サイト</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            /* Dark Mode Colors */
+            --bg-primary: #1a202c; /* slate-900 */
+            --text-primary: #e2e8f0; /* slate-200 */
+            --card-bg: #2d3748; /* gray-800 */
+            --border-color: #4a5568; /* gray-700 */
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --nav-btn-bg: #4a5568; /* gray-700 */
+            --nav-btn-text: #e2e8f0;
+            --nav-btn-border: #64748b; /* slate-600 */
+            --nav-btn-hover-bg: #64748b; /* slate-600 */
+            --nav-btn-icon: #a0aec0; /* gray-400 */
+            --active-btn-bg: #4299e1; /* blue-500 */
+            --active-btn-border: #3182ce; /* blue-600 */
+            --active-btn-text: #ffffff;
+            --active-btn-icon: #ffffff;
+            --math-bg: #4a5568; /* gray-700 */
+            --math-border: #63b3ed; /* blue-400 */
+            --heading-main: #ffffff;
+            --heading-sub: #63b3ed; /* blue-400 */
+            --accordion-header-bg: #4a5568; /* gray-700 */
+            --accordion-header-hover-bg: #64748b; /* gray-600 */
+            --accordion-header-text: #e2e8f0;
+            --accordion-header-border: #64748b;
+            --accordion-icon: #a0aec0;
+            --table-header-bg: #2d3748; /* gray-800 */
+            --table-header-text: #a0aec0; /* gray-400 */
+            --table-cell-bg: #2d3748; /* gray-800 */
+            --table-cell-text: #e2e8f0; /* light gray */
+            --footer-bg: #000000;
+            --header-bg-from: #1a202c; /* gray-900 */
+            --header-bg-to: #000000; /* black */
+        }
+
+        /* Light Mode Colors */
+        body.light-mode {
+            --bg-primary: #ffffff; /* white */
+            --text-primary: #334155; /* dark slate gray */
+            --card-bg: #f8fafc; /* light blue-gray */
+            --border-color: #e2e8f0; /* subtle border */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --nav-btn-bg: #e2e8f0; /* slate-200 */
+            --nav-btn-text: #475569; /* slate-700 */
+            --nav-btn-border: #cbd5e1; /* slate-300 */
+            --nav-btn-hover-bg: #cfd8e3; /* custom light blue-gray */
+            --nav-btn-icon: #64748b; /* slate-500 */
+            --active-btn-bg: #2563eb; /* blue-600 */
+            --active-btn-border: #1d4ed8; /* darker blue */
+            --active-btn-text: #ffffff;
+            --active-btn-icon: #ffffff;
+            --math-bg: #f0f8ff; /* AliceBlue */
+            --math-border: #3b82f6; /* blue-500 */
+            --heading-main: #1e3a8a; /* dark blue */
+            --heading-sub: #1e40af; /* darker blue */
+            --accordion-header-bg: #e0f2fe; /* light blue */
+            --accordion-header-hover-bg: #cceeff; /* lighter blue */
+            --accordion-header-text: #2563eb; /* blue-600 */
+            --accordion-header-border: #90cdf4; /* medium blue */
+            --accordion-icon: #2563eb; /* blue-600 */
+            --table-header-bg: #eef2f6; /* lighter blue-gray */
+            --table-header-text: #475569; /* slate-700 */
+            --table-cell-bg: #ffffff; /* white */
+            --table-cell-text: #334155; /* dark slate gray */
+            --footer-bg: #1a202c; /* dark gray */
+            --header-bg-from: #3b82f6; /* blue-700 */
+            --header-bg-to: #4f46e5; /* indigo-800 */
+        }
+
+        /* General styles using CSS variables */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 1.25rem; /* More rounded */
+            box-shadow: 0 15px 25px -5px var(--shadow-color), 0 8px 10px -6px rgba(0, 0, 0, 0.05); /* Stronger, softer shadow for dark theme */
+            padding: 2.5rem; /* Increased padding */
+            margin-bottom: 2.5rem; /* Increased margin */
+            border: 1px solid var(--border-color); /* Subtle border: gray-700 */
+            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+        .nav-button {
+            padding: 1.25rem 1.75rem; /* Larger buttons */
+            border-radius: 0.85rem; /* More rounded */
+            font-weight: 700; /* Bolder font */
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            text-align: left; /* Align text to left */
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* Space between icon and text */
+            background-color: var(--nav-btn-bg);
+            color: var(--nav-btn-text);
+            border-color: var(--nav-btn-border);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Button shadow */
+        }
+        .nav-button:hover {
+            transform: translateY(-4px) scale(1.03); /* More pronounced hover */
+            background-color: var(--nav-btn-hover-bg);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        .nav-button.active {
+            background-color: var(--active-btn-bg); /* Blue-500 for active */
+            color: var(--active-btn-text);
+            border: 2px solid var(--active-btn-border); /* Darker blue border */
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+        }
+        .nav-button i {
+            font-size: 1.5rem; /* Icon size */
+            color: var(--nav-btn-icon);
+            transition: color 0.3s ease;
+        }
+        .nav-button.active i {
+            color: var(--active-btn-icon); /* White for active icon */
+        }
+
+        /* MathJax for LaTeX rendering */
+        .math-display {
+            font-size: 1.2em; /* Slightly larger font */
+            margin: 1.75em 0; /* More margin */
+            padding: 1em 1.25em; /* More padding */
+            background-color: var(--math-bg);
+            border-left: 6px solid var(--math-border);
+            border-radius: 0.65rem; /* More rounded */
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.15); /* Inner shadow */
+            color: var(--text-primary); /* Light text for equations */
+            transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Headings styling */
+        h2 {
+            font-size: 2.8rem; /* Larger main heading */
+            font-weight: 800; /* Extra bold */
+            color: var(--heading-main);
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            transition: color 0.5s ease;
+        }
+        h3 {
+            font-size: 2.2rem; /* Larger sub-heading */
+            font-weight: 700;
+            color: var(--heading-sub);
+            margin-bottom: 1.8rem;
+            transition: color 0.5s ease;
+        }
+        /* Accordion header styling */
+        .accordion-item {
+            margin-bottom: 1rem; /* Space between accordion items */
+        }
+        .accordion-header {
+            background-color: var(--accordion-header-bg);
+            border: 1px solid var(--accordion-header-border);
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            padding: 1rem 1.25rem; /* Padding for header */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            font-weight: 700;
+            color: var(--accordion-header-text);
+            transition: all 0.3s ease-in-out;
+        }
+        .accordion-header:hover {
+            background-color: var(--accordion-header-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .accordion-header.active {
+            background-color: var(--active-btn-bg); /* Active blue */
+            color: var(--active-btn-text);
+            border-color: var(--active-btn-border);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+        }
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+            color: var(--active-btn-icon);
+        }
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease-in-out, color 0.3s ease;
+            color: var(--accordion-icon);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; /* Slower transition */
+            padding: 0 1rem; /* Initial padding for collapsed state */
+        }
+        .accordion-content.expanded {
+            max-height: 3000px; /* Sufficiently large value for expanded content */
+            padding: 1rem; /* Padding when expanded */
+        }
+        .accordion-content > div {
+            background-color: var(--card-bg); /* Darker content background: gray-800 */
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 0.75rem 0.75rem;
+            padding: 1.8rem; /* More padding */
+            margin-top: -0.75rem; /* Overlap with header border */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        /* Sub-headings within accordion content */
+        .accordion-content h4 {
+            font-size: 1.35rem; /* Slightly larger h4 within content */
+            font-weight: 600;
+            color: var(--heading-sub);
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid var(--math-border); /* Blue underline */
+            padding-bottom: 0.4rem;
+            transition: color 0.5s ease, border-color 0.5s ease;
+        }
+        .accordion-content p {
+            line-height: 1.9; /* Increased line height for readability */
+            margin-bottom: 0.8em;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+        }
+        .accordion-content ul {
+            list-style-type: disc;
+            margin-left: 2rem; /* More indent */
+            margin-bottom: 0.8em;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+        }
+        .accordion-content li {
+            margin-bottom: 0.4em;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 1em 0;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.5s ease;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 400px; /* Ensure table is wide enough for content */
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.75em 1em;
+            text-align: center;
+            transition: border-color 0.5s ease;
+        }
+        th {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+            color: var(--table-header-text);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        td {
+            background-color: var(--table-cell-bg);
+            color: var(--table-cell-text);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        header {
+            background-image: linear-gradient(to right, var(--header-bg-from), var(--header-bg-to));
+            transition: background-image 0.5s ease;
+        }
+        footer {
+            background-color: var(--footer-bg);
+            transition: background-color 0.5s ease;
+        }
+
+        /* Specific layout styles (not theme-dependent) */
+        .header-icon {
+            color: #63b3ed; /* blue-400 for header calculator icon, fixed */
+        }
+
+        /* Subject selection button styles */
+        .subject-button {
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: var(--nav-btn-bg);
+            color: var(--nav-btn-text);
+            border: 2px solid var(--nav-btn-border);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .subject-button:hover {
+            background-color: var(--nav-btn-hover-bg);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+        }
+        .subject-button.active {
+            background-color: var(--active-btn-bg);
+            color: var(--active-btn-text);
+            border-color: var(--active-btn-border);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        .subject-button i {
+            font-size: 1.8rem;
+            color: var(--nav-btn-icon);
+            transition: color 0.3s ease;
+        }
+        .subject-button.active i {
+            color: var(--active-btn-icon);
+        }
+
+        /* Back to Top Button Styling */
+        #back-to-top {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top.invisible {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+    <!-- MathJax CDN for LaTeX rendering -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="p-8 shadow-2xl rounded-b-3xl">
+        <div class="container flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <i class="fas fa-calculator text-5xl mr-4 header-icon"></i>
+                <h1 class="text-5xl font-extrabold text-shadow-lg text-white">高校数学 数I・A・II・B</h1>
+            </div>
+            <button id="theme-toggle" class="p-3 rounded-full bg-gray-700 text-white text-xl shadow-md hover:bg-gray-600 transition-colors duration-300">
+                <i class="fas fa-sun"></i> <!-- Default to sun for light mode switch -->
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow container mt-12">
+        <section class="mb-16">
+            <h2 id="section-title" class="text-white">科目を選択してください</h2>
+            <!-- Subject selection buttons -->
+            <div id="subject-selection" class="flex flex-wrap justify-center gap-8 mb-12">
+                <button class="subject-button" data-subject="IA">
+                    <i class="fas fa-graduation-cap"></i><span>数I・A</span>
+                </button>
+                <button class="subject-button" data-subject="IIB">
+                    <i class="fas fa-chart-bar"></i><span>数II・B</span>
+                </button>
+            </div>
+
+            <!-- Topic navigation (dynamically populated) -->
+            <div id="nav-topics-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 nav-grid">
+                <!-- Topic buttons will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section id="content-display" class="card">
+            <h3 id="topic-title" class="text-blue-400 mb-8">トピックを選択してください</h3>
+            <div id="topic-content" class="text-lg leading-relaxed text-gray-200">
+                <p>科目を選択し、左のメニューから学習したいトピックを選んでください。各トピックの基本的な解説と関連する知識が表示されます。</p>
+                <p class="mt-6 text-gray-400">このサイトは、高校数学の基礎をしっかりと理解し、公式や定理を効率的に確認するための手助けとなることを目指しています。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white p-8 mt-16 rounded-t-3xl">
+        <div class="container text-center text-sm opacity-90">
+            &copy; 2025 高校数学学習サイト. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 opacity-0 invisible z-50">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+        const subjectSelection = document.getElementById('subject-selection');
+        const navTopicsContainer = document.getElementById('nav-topics-container');
+        const topicTitle = document.getElementById('topic-title');
+        const topicContent = document.getElementById('topic-content');
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const sectionTitle = document.getElementById('section-title');
+        const backToTopButton = document.getElementById('back-to-top');
+
+        let currentSubject = null; // To keep track of the currently selected subject
+
+        // Function to initialize accordions within a given element
+        function initializeAccordions(element) {
+            const accordionHeaders = element.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach((header, index) => {
+                const content = header.nextElementSibling;
+                const contentId = `accordion-content-${Date.now()}-${index}`; // Unique ID for accessibility
+                content.id = contentId;
+                header.setAttribute('aria-controls', contentId);
+                header.setAttribute('aria-expanded', 'false'); // Default collapsed
+
+                header.removeEventListener('click', toggleAccordion); // Prevent duplicate listeners
+                header.addEventListener('click', toggleAccordion);
+            });
+        }
+
+        function toggleAccordion(event) {
+            const header = event.currentTarget;
+            const content = header.nextElementSibling; // The accordion-content div
+            const icon = header.querySelector('.accordion-icon');
+
+            // Close all other open accordions in the same parent
+            const parent = header.closest('.card');
+            if (parent) {
+                parent.querySelectorAll('.accordion-header.active').forEach(activeHeader => {
+                    if (activeHeader !== header) {
+                        activeHeader.classList.remove('active');
+                        activeHeader.setAttribute('aria-expanded', 'false'); // Update aria-expanded
+                        activeHeader.nextElementSibling.classList.remove('expanded');
+                        activeHeader.nextElementSibling.style.maxHeight = '0'; // Explicitly set to 0
+                        activeHeader.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+
+            // Toggle the clicked accordion
+            const isExpanded = header.classList.toggle('active');
+            header.setAttribute('aria-expanded', isExpanded); // Update aria-expanded
+            content.classList.toggle('expanded');
+            if (isExpanded) {
+                icon.style.transform = 'rotate(180deg)';
+                // Set max-height dynamically based on scrollHeight
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+                content.style.maxHeight = '0';
+            }
+        }
+
+        // Theme switching logic
+        function setTheme(mode) {
+            if (mode === 'dark') {
+                document.body.classList.remove('light-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize theme on load
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark if no preference
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentMode = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+            setTheme(currentMode === 'dark' ? 'light' : 'dark');
+        });
+
+
+        // Topic data - Content is now structured with accordion items
+        const topics = {
+            numbers: {
+                title: "数と式",
+                subject: "IA",
+                icon: "fas fa-infinity",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>実数とその分類</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>実数とは、数直線上のすべての点に対応する数のことです。大きく分けて「有理数」と「無理数」に分類されます。</p>
+                                <h4>有理数</h4>
+                                <p>分数 $p/q$ （$p$ は整数、$q$ は0でない整数）の形で表せる数です。有限小数または循環小数になります。</p>
+                                <ul>
+                                    <li>例: $3$ ($3/1$), $0.5$ ($1/2$), $1/3$ ($0.333...$)</li>
+                                    <li>整数、有限小数、循環小数はすべて有理数です。</li>
+                                </ul>
+                                <h4>無理数</h4>
+                                <p>分数で表せない数です。無限に続く非循環小数になります。</p>
+                                <ul>
+                                    <li>例: $\\sqrt{2}$ ($1.41421356...$), $\\pi$ ($3.14159265...$), $\\sqrt{3}$ ($1.7320508...$)</li>
+                                    <li>無理数の代表例として、平方根が整数にならない数や円周率があります。</li>
+                                </ul>
+                                <h4>絶対値</h4>
+                                <p>数直線上で原点からの距離を表します。$|a|$ は $a$ の絶対値です。</p>
+                                <div class="math-display">
+                                    $$|a| = \\begin{cases} a & (a \\ge 0) \\\\ -a & (a < 0) \\end{cases}$$
+                                </div>
+                                <p>絶対値を含む方程式や不等式では、場合分けが必要になることがあります。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>式の計算と展開・因数分解</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>多項式の加減乗除や、展開・因数分解は数学の基本的な操作です。これらを効率的に行うための公式を理解しましょう。</p>
+                                <h4>乗法公式 (展開の公式)</h4>
+                                <div class="math-display">
+                                    $$(a+b)^2 = a^2 + 2ab + b^2$$
+                                    $$(a-b)^2 = a^2 - 2ab + b^2$$
+                                    $$(a+b)(a-b) = a^2 - b^2$$
+                                    $$(x+a)(x+b) = x^2 + (a+b)x + ab$$
+                                    $$(a+b+c)^2 = a^2+b^2+c^2+2ab+2bc+2ca$$
+                                </div>
+                                <p><strong>例:</strong> $(x+2)(x+3) = x^2 + 5x + 6$</p>
+                                <p><strong>例:</strong> $(2x-y)^2 = (2x)^2 - 2(2x)(y) + y^2 = 4x^2 - 4xy + y^2$</p>
+                                <h4>因数分解の公式</h4>
+                                <div class="math-display">
+                                    $$a^2 + 2ab + b^2 = (a+b)^2$$
+                                    $$a^2 - 2ab + b^2 = (a-b)^2$$
+                                    $$a^2 - b^2 = (a+b)(a-b)$$
+                                    $$x^2 + (a+b)x + ab = (x+a)(x+b)$$
+                                    $$acx^2+(ad+bc)x+bd = (ax+b)(cx+d)$$
+                                </div>
+                                <p><strong>例:</strong> $x^2 + 5x + 6 = (x+2)(x+3)$</p>
+                                <p><strong>例:</strong> $4x^2 - 9y^2 = (2x)^2 - (3y)^2 = (2x+3y)(2x-3y)$</p>
+                                <h4>たすき掛けによる因数分解</h4>
+                                <p>$ax^2 + bx + c$ の形の二次式を因数分解する際に使われる手法です。係数を分解して積と和の関係を見つけます。</p>
+                                <p><strong>例:</strong> $2x^2 + 7x + 3 = (2x+1)(x+3)$</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>根号を含む式と不等式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>根号を含む式の計算</h4>
+                                <p>根号（$\\sqrt{}$）を含む式の計算では、有理化や分配法則、乗法公式の応用などが基本です。</p>
+                                <p><strong>根号の性質:</strong></p>
+                                <div class="math-display">
+                                    $$\\sqrt{a^2 b} = a\\sqrt{b} \\quad (a>0, b>0)$$
+                                    $$\\sqrt{a}\\sqrt{b} = \\sqrt{ab}$$
+                                    $$\\frac{\\sqrt{a}}{\\sqrt{b}} = \\sqrt{\\frac{a}{b}}$$
+                                </div>
+                                <p><strong>有理化:</strong> 分母に根号がある場合に、分母を有理数にすること。</p>
+                                <div class="math-display">$$\\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}, \\quad \\frac{1}{\\sqrt{3}+\\sqrt{2}} = \\frac{\\sqrt{3}-\\sqrt{2}}{(\\sqrt{3}+\\sqrt{2})(\\sqrt{3}-\\sqrt{2})} = \\sqrt{3}-\\sqrt{2}$$</div>
+                                <h4>二重根号</h4>
+                                <p>$\\sqrt{A \\pm \\sqrt{B}}$ の形をした根号で、$\\sqrt{(a+b) \\pm 2\\sqrt{ab}} = \\sqrt{a} \\pm \\sqrt{b}$ の公式を用いて外すことができます。ただし、$a>0, b>0$ かつ $A=a+b, B=4ab$ となる $a,b$ を見つける必要があります。</p>
+                                <div class="math-display">$$\\sqrt{5 + 2\\sqrt{6}} = \\sqrt{(2+3) + 2\\sqrt{2 \\times 3}} = \\sqrt{2} + \\sqrt{3}$$</div>
+                                <p><strong>注意:</strong> 二重根号を外すには、根号の中が $A \\pm 2\\sqrt{B'}$ の形になっている必要があります。</p>
+                                <h4>不等式</h4>
+                                <p>数の大小関係を表す式です。一次不等式や二次不等式があります。</p>
+                                <ul>
+                                    <li><strong>一次不等式:</strong> $ax > b$ のような形。移項や両辺を割る操作は方程式と似ていますが、負の数で割る（または掛ける）場合は不等号の向きが逆になることに注意が必要です。</li>
+                                    <li><strong>二次不等式:</b> $ax^2 + bx + c > 0$ のような形。二次関数のグラフを利用して解くのが一般的です。グラフがx軸と交わる点の位置が重要になります。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'sets-logic': {
+                title: "集合と論理",
+                subject: "IA",
+                icon: "fas fa-project-diagram",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>集合の概念と表現</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>集合とは</h4>
+                                <p>ある条件を満たすものの集まりを集合といい、その一つ一つのものを要素（元）と呼びます。集合は通常、大文字のアルファベットで表されます。</p>
+                                <ul>
+                                    <li><strong>要素の列挙:</strong> $A = \\{1, 2, 3\\}$ (要素を一つずつ書き並べる)</li>
+                                    <li><strong>条件を提示:</strong> $B = \\{x | x は10以下の正の偶数\\}$ (要素の満たす条件を示す)</li>
+                                </ul>
+                                <h4>集合の種類と記号</h4>
+                                <ul>
+                                    <li><strong>要素 ($a \\in A$):</strong> $a$ は集合 $A$ の要素である。</li>
+                                    <li><strong>部分集合 ($A \\subset B$):</strong> 集合Aのすべての要素が集合Bの要素であるとき、AはBの部分集合である。</li>
+                                    <li><strong>共通部分 ($A \\cap B$):</b> 集合Aと集合Bのどちらにも含まれる要素の集合。</li>
+                                    <li><strong>和集合 ($A \\cup B$):</strong> 集合Aまたは集合Bの少なくとも一方に含まれる要素の集合。</li>
+                                    <li><strong>補集合 ($\\bar{A}$ または $A^c$):</strong> 全体集合Uにおいて、集合Aに含まれない要素の集合。</li>
+                                    <li><strong>空集合 ($\\emptyset$ または $\\{\\}$):</b> 要素を一つも持たない集合。任意の集合の部分集合です。</li>
+                                    <li><strong>全体集合 ($U$):</strong> 考察の対象となるすべての要素を含む集合。</li>
+                                </ul>
+                                <p><strong>例:</strong> $U = \\{1,2,3,4,5\\}$, $A = \\{1,2\\}$, $B = \\{2,3,4\\}$ のとき</p>
+                                <ul>
+                                    <li>$A \\cap B = \\{2\\}$</li>
+                                    <li>$A \\cup B = \\{1,2,3,4\\}$</li>
+                                    <li>$\\bar{A} = \\{3,4,5\\}$</li>
+                                </ul>
+                                <p>これらの関係はベン図で視覚的に理解すると分かりやすいです。</p>
+                                <h4>要素の個数</h4>
+                                <p>有限集合の要素の個数を $n(A)$ で表します。</p>
+                                <div class="math-display">$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$</div>
+                                <p>特に、AとBが排反（共通部分がない）ならば $n(A \\cup B) = n(A) + n(B)$ です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>命題と条件</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>命題</h4>
+                                <p>真偽が明確に定まる文や式のこと。「真」または「偽」のどちらか一方であるものが命題です。</p>
+                                <ul>
+                                    <li>例: 「2は偶数である」（真の命題）</li>
+                                    <li>例: 「日本の首都は大阪である」（偽の命題）</li>
+                                    <li>例: 「$x+1=5$」（これは命題ではない。$x$ の値によって真偽が変わるため「条件」です。）</li>
+                                </ul>
+                                <h4>条件</h4>
+                                <p>変数の値によって真偽が変わる文や式のこと。特定の変数の値に対して真になったり偽になったりします。</p>
+                                <ul>
+                                    <li>例: 「$x$ は偶数である」 (x=2なら真、x=3なら偽)</li>
+                                    <li>例: 「$x^2 = 4$」 (x=2またはx=-2なら真、それ以外なら偽)</li>
+                                </ul>
+                                <h4>「ならば」の命題 ($P \\Rightarrow Q$)</h4>
+                                <p>条件Pが真ならば条件Qも真である、という形の命題。Pを仮定、Qを結論と呼びます。</p>
+                                <p>この命題が偽となるのは、Pが真であるにもかかわらずQが偽となる場合（反例）のみです。それ以外の場合は真となります。</p>
+                                <p><strong>例:</strong> 「$x=2$ ならば $x^2=4$ である」 (真)</p>
+                                <p><strong>例:</strong> 「$x$ が偶数ならば $x$ は4の倍数である」 ($x=2$ は偶数だが4の倍数ではないため偽。$x=2$ が反例)</p>
+                                <h4>真理集合</h4>
+                                <p>条件を満たす要素全体の集合を真理集合と呼びます。条件Pの真理集合を $P$、条件Qの真理集合を $Q$ とすると、命題 $P \\Rightarrow Q$ が真であることは $P \\subset Q$ と同値です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>必要条件・十分条件</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>命題 $P \\Rightarrow Q$ の真偽によって、PとQの関係が決まります。</p>
+                                <ul>
+                                    <li><strong>十分条件:</strong> 命題 $P \\Rightarrow Q$ が真のとき、PはQであるための十分条件であるといいます。Pが成り立てばQが必ず成り立つからです。 (矢印の向きに「十分」)</li>
+                                    <li><strong>必要条件:</strong> 命題 $P \\Rightarrow Q$ が真のとき、QはPであるための必要条件であるといいます。Pが成り立つためにはQが必ず必要だからです。 (矢印の根元に「必要」)</li>
+                                    <li><strong>必要十分条件:</strong> 命題 $P \\Rightarrow Q$ と $Q \\Rightarrow P$ がともに真のとき、PはQであるための必要十分条件であるといいます。この関係は $P \\Leftrightarrow Q$ と書かれ、PとQが同値であることを意味します。</li>
+                                </ul>
+                                <p><strong>例1:</strong> 「$x$ は4の倍数である」をP、「$x$ は2の倍数である」をQとする。</p>
+                                <ul>
+                                    <li>$P \\Rightarrow Q$ (「$x$ は4の倍数ならば $x$ は2の倍数である」) は真。したがってPはQであるための<strong>十分条件</strong>。</li>
+                                    <li>$Q \\Rightarrow P$ (「$x$ は2の倍数ならば $x$ は4の倍数である」) は偽 (反例: $x=2$)。</li>
+                                </ul>
+                                <p><strong>例2:</strong> 「$x=2$」をP、「$x^2=4$」をQとする。</p>
+                                <ul>
+                                    <li>$P \\Rightarrow Q$ (「$x=2$ ならば $x^2=4$ である」) は真。したがってPはQであるための<strong>十分条件</strong>。</li>
+                                    <li>$Q \\Rightarrow P$ (「$x^2=4$ ならば $x=2$ である」) は偽 (反例: $x=-2$)。</li>
+                                </ul>
+                                <p><strong>例3:</strong> 「$x=2$ かつ $y=3$」をP、「$x+y=5$ かつ $xy=6$」をQとする。</p>
+                                <ul>
+                                    <li>$P \\Rightarrow Q$ は真。</li>
+                                    <li>$Q \\Rightarrow P$ も真。</li>
+                                    <li>したがってPはQであるための<strong>必要十分条件</strong>。</li>
+                                </ul>
+                                <p>真理集合で考えると、$P \\subset Q$ ならばPはQの十分条件、$Q \\subset P$ ならばPはQの必要条件、$P = Q$ ならばPはQの必要十分条件となります。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>逆・裏・対偶</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>元の命題 $P \\Rightarrow Q$ に対して、以下の3つの命題が定義されます。</p>
+                                <ul>
+                                    <li><strong>逆:</strong> $Q \\Rightarrow P$ (仮定と結論を入れ替える)</li>
+                                    <li><strong>裏:</strong> $\\bar{P} \\Rightarrow \\bar{Q}$ (仮定と結論をそれぞれ否定する)</li>
+                                    <li><strong>対偶:</strong> $\\bar{Q} \\Rightarrow \\bar{P}$ (逆の裏、または裏の逆)</li>
+                                </ul>
+                                <p>これらの命題の真偽関係は以下の通りです。</p>
+                                <ul>
+                                    <li>元の命題 $P \\Rightarrow Q$ とその**対偶** $\\bar{Q} \\Rightarrow \\bar{P}$ の真偽は常に一致します。これは、元の命題を直接証明するのが難しい場合に、対偶を証明することで元の命題の真偽を示すことができるため、非常に重要です。</li>
+                                    <li>元の命題と逆、裏の真偽は必ずしも一致しません。</li>
+                                </ul>
+                                <p><strong>例:</strong> 命題「$x=2$ ならば $x^2=4$ である」（真）</p>
+                                <ul>
+                                    <li><strong>逆:</strong> 「$x^2=4$ ならば $x=2$ である」（偽、反例: $x=-2$）</li>
+                                    <li><strong>裏:</strong> 「$x \\ne 2$ ならば $x^2 \\ne 4$ である」（偽、反例: $x=-2$）</li>
+                                    <li><strong>対偶:</strong> 「$x^2 \\ne 4$ ならば $x \\ne 2$ である」（真）</li>
+                                </ul>
+                                <p>背理法は、命題の否定（または結論の否定）を仮定して矛盾を導くことで、元の命題が真であることを示す証明法です。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            quadratic: {
+                title: "二次関数",
+                subject: "IA",
+                icon: "fas fa-chart-line",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>二次関数のグラフと性質</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>二次関数 $y = ax^2 + bx + c$ のグラフは「放物線」と呼ばれます。その形状や位置は係数 $a, b, c$ によって決まります。</p>
+                                <h4>一般形と標準形</h4>
+                                <p><strong>一般形:</strong> $y = ax^2 + bx + c$</p>
+                                <p><strong>標準形:</strong> $y = a(x-p)^2 + q$ (頂点の座標は $(p,q)$、軸は直線 $x=p$)</p>
+                                <p>一般形から標準形への変形は「平方完成」という操作で行います。これにより、頂点の座標や軸がすぐに分かります。</p>
+                                <p><strong>例:</strong> $y = x^2 - 4x + 3$ を平方完成すると、$y = (x^2 - 4x + 4) - 4 + 3 = (x-2)^2 - 1$ となります。</p>
+                                <p>この場合、頂点は $(2,-1)$、軸は $x=2$ です。</p>
+                                <h4>グラフの形状 ($a$ の符号)</h4>
+                                <ul>
+                                    <li>$a > 0$: グラフは下に凸（開口部が上向き）</li>
+                                    <li>$a < 0$: グラフは上に凸（開口部が下向き）</li>
+                                </ul>
+                                <p>また、$|a|$ の値が大きいほど、放物線の開きは小さく（細く）なります。</p>
+                                <h4>グラフの平行移動・対称移動</h4>
+                                <p>$y = ax^2$ のグラフを $x$ 軸方向に $p$、$y$ 軸方向に $q$ だけ平行移動すると、その方程式は $y = a(x-p)^2 + q$ となります。</p>
+                                <p>対称移動は、x軸、y軸、原点、直線 $y=x$ などに対して行われます。</p>
+                                <h4>二次関数の決定</h4>
+                                <p>グラフが通る3点、頂点の座標、軸の方程式などの情報から、二次関数の式を決定することができます。</p>
+                                <ul>
+                                    <li><strong>3点を通る場合:</strong> $y = ax^2 + bx + c$ に3点の座標を代入して連立方程式を解く。</li>
+                                    <li><strong>頂点の座標が与えられている場合:</strong> $y = a(x-p)^2 + q$ に頂点と他の1点の座標を代入する。</li>
+                                    <li><strong>x軸との交点が与えられている場合:</strong> $y = a(x-\\alpha)(x-\\beta)$ の形を利用する。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>二次関数の最大・最小</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>二次関数の最大値・最小値は、グラフの頂点の位置と定義域（$x$ の範囲）によって決まります。</p>
+                                <ul>
+                                    <li>**定義域がない場合:**
+                                        <ul>
+                                            <li>下に凸 ($a>0$): 頂点で最小値をとる。最大値は存在しない。</li>
+                                            <li>上に凸 ($a<0$): 頂点で最大値をとる。最小値は存在しない。</li>
+                                        </ul>
+                                    </li>
+                                    <li>**定義域がある場合 (例: $x_1 \\le x \\le x_2$):**
+                                        <p>軸が定義域に含まれるか、定義域の外にあるかで場合分けが必要です。</p>
+                                        <ul>
+                                            <li>軸が定義域内にある場合: 頂点で極値（最大または最小）をとり、もう一方の極値は定義域の端点のうち軸から遠い方でとる。</li>
+                                            <li>軸が定義域の外にある場合: 定義域の端点で最大値と最小値をとる。</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p><strong>手順:</strong></p>
+                                <ol>
+                                    <li>与えられた二次関数を標準形に平方完成し、頂点の座標と軸の位置を確認する。</li>
+                                    <li>定義域と軸の位置関係を数直線上に図示する。</li>
+                                    <li>グラフの形状（下に凸か上に凸か）を考慮し、最大値・最小値をとる $x$ の値を特定する。</li>
+                                    <li>特定した $x$ の値を関数に代入して、最大値・最小値を求める。</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>二次方程式と判別式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>二次方程式の解法</h4>
+                                <p>$ax^2 + bx + c = 0$ ($a \\ne 0$) の形の二次方程式を解くには、主に以下の方法があります。</p>
+                                <ul>
+                                    <li><strong>因数分解:</strong> $(x-\\alpha)(x-\\beta)=0$ の形に変形できれば、解は $x=\\alpha, \\beta$ となる。</li>
+                                    <li><strong>平方完成:</strong> $(x-p)^2 = q$ の形に変形し、$x-p = \\pm \\sqrt{q}$ から解を求める。</li>
+                                    <li><strong>解の公式:</strong> どのような二次方程式でも解を求めることができる万能な公式です。</li>
+                                </ul>
+                                <h4>二次方程式の解の公式</h4>
+                                <div class="math-display">$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$</div>
+                                <h4>判別式 ($D$)</h4>
+                                <p>解の公式の根号の中身 $D = b^2 - 4ac$ を判別式と呼び、二次方程式の実数解の個数を判別します。</p>
+                                <ul>
+                                    <li>$D > 0$: 異なる2つの実数解を持つ（二次関数のグラフはx軸と2点で交わる）</li>
+                                    <li>$D = 0$: 重解（1つの実数解）を持つ（二次関数のグラフはx軸に接する）</li>
+                                    <li>$D < 0$: 実数解を持たない（異なる2つの虚数解を持つ。二次関数のグラフはx軸と交わらない）</li>
+                                </ul>
+                                <p>特に、$b$ が偶数（$b=2b'$）の場合、簡略化された判別式 $D/4 = b'^2 - ac$ を用いると計算が楽になります。</p>
+                                <h4>解と係数の関係</h4>
+                                <p>二次方程式 $ax^2 + bx + c = 0$ の2つの解を $\\alpha, \\beta$ とすると、以下の関係が成り立ちます。</p>
+                                <div class="math-display">
+                                    $$\\alpha + \\beta = -\\frac{b}{a}$$
+                                    $$\\alpha \\beta = \\frac{c}{a}$$
+                                </div>
+                                <p>この関係は、解を直接求めずに解の和や積を知りたい場合や、解から方程式を構成する場合に非常に有用です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>二次不等式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>二次不等式は、二次関数のグラフとx軸との位置関係を利用して解きます。</p>
+                                <p><strong>基本的な考え方:</strong></p>
+                                <ol>
+                                    <li>二次不等式を $ax^2 + bx + c > 0$ (または $<0, \\ge 0, \\le 0$) の形にする。</li>
+                                    <li>対応する二次方程式 $ax^2 + bx + c = 0$ を解き、x軸との交点（共有点）の座標を求める。</li>
+                                    <li>二次関数 $y = ax^2 + bx + c$ のグラフを描き、x軸との位置関係を確認する。</li>
+                                    <li>不等号の向きとグラフの位置関係から、条件を満たす $x$ の範囲を読み取る。</li>
+                                </ol>
+                                <p><strong>例:</strong> $x^2 - 4x + 3 > 0$ を解くには、まず $y = x^2 - 4x + 3$ のグラフを考えます。$x^2 - 4x + 3 = 0$ を解くと $(x-1)(x-3) = 0$ より $x=1, 3$ です。グラフは下に凸で、x軸と $x=1, 3$ で交わります。$y > 0$ となるのは、グラフがx軸より上にある部分なので、解は $x < 1$ または $x > 3$ となります。</p>
+                                <h4>判別式と二次不等式の解の関係</h4>
+                                <p>二次方程式の判別式 $D$ の符号によって、二次不等式の解のパターンが分類されます。</p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>判別式 $D$</th>
+                                                <th>$ax^2+bx+c > 0$ の解 ($a>0$ の場合)</th>
+                                                <th>$ax^2+bx+c < 0$ の解 ($a>0$ の場合)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>$D > 0$ (異なる2実数解 $\\alpha, \\beta$)</td>
+                                                <td>$x < \\alpha, x > \\beta$</td>
+                                                <td>$\\alpha < x < \\beta$</td>
+                                            </tr>
+                                            <tr>
+                                                <td>$D = 0$ (重解 $\\alpha$)</td>
+                                                <td>$x \\ne \\alpha$ のすべての実数</td>
+                                                <td>解なし</td>
+                                            </tr>
+                                            <tr>
+                                                <td>$D < 0$ (実数解なし)</td>
+                                                <td>すべての実数</td>
+                                                <td>解なし</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>等号を含む不等式（$\\ge, \\le$）の場合は、共有点も解に含めます。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            geometry: {
+                title: "図形と計量",
+                subject: "IA",
+                icon: "fas fa-ruler-combined",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角比の定義と相互関係</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>三角比の定義 (鋭角)</h4>
+                                <p>直角三角形において、角度 $\\theta$ に対する辺の比率を $\\sin \\theta, \\cos \\theta, \\tan \\theta$ と定義します。</p>
+                                <div class="math-display">
+                                    $$\\sin \\theta = \\frac{対辺}{斜辺}$$
+                                    $$\\cos \\theta = \\frac{隣辺}{斜辺}$$
+                                    $$\\tan \\theta = \\frac{対辺}{隣辺}$$
+                                </div>
+                                <h4>三角比の相互関係</h4>
+                                <p>三角比の間には常に成り立つ関係式があります。</p>
+                                <div class="math-display">
+                                    $$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$
+                                    $$\\sin^2 \\theta + \\cos^2 \\theta = 1$$
+                                    $$1 + \\tan^2 \\theta = \\frac{1}{\\cos^2 \\theta}$$
+                                </div>
+                                <p>これらの関係式は、いずれか一つの三角比の値が分かれば、他の三角比の値を求める際に役立ちます。</p>
+                                <h4>特殊な角の三角比</h4>
+                                <p>$0^\\circ, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ$ などの特殊な角の三角比は頻繁に利用されます。これらの値は直角二等辺三角形や正三角形を半分にした図を考えると導き出せます。</p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>$\\theta$</th>
+                                                <th>$0^\\circ$</th>
+                                                <th>$30^\\circ$</th>
+                                                <th>$45^\\circ$</th>
+                                                <th>$60^\\circ$</th>
+                                                <th>$90^\\circ$</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>$\\sin \\theta$</td>
+                                                <td>$0$</td>
+                                                <td>$\\frac{1}{2}$</td>
+                                                <td>$\\frac{\\sqrt{2}}{2}$</td>
+                                                <td>$\\frac{\\sqrt{3}}{2}$</td>
+                                                <td>$1$</td>
+                                            </tr>
+                                            <tr>
+                                                <td>$\\cos \\theta$</td>
+                                                <td>$1$</td>
+                                                <td>$\\frac{\\sqrt{3}}{2}$</td>
+                                                <td>$\\frac{\\sqrt{2}}{2}$</td>
+                                                <td>$\\frac{1}{2}$</td>
+                                                <td>$0$</td>
+                                            </tr>
+                                            <tr>
+                                                <td>$\\tan \\theta$</td>
+                                                <td>$0$</td>
+                                                <td>$\\frac{1}{\\sqrt{3}}$</td>
+                                                <td>$1$</td>
+                                                <td>$\\sqrt{3}$</td>
+                                                <td>定義されない</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角比の拡張 (鈍角)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>三角比は、単位円を用いることで $0^\\circ$ から $180^\\circ$ までの角に拡張されます。</p>
+                                <ul>
+                                    <li>$\\sin (180^\\circ - \\theta) = \\sin \\theta$</li>
+                                    <li>$\\cos (180^\\circ - \\theta) = -\\cos \\theta$</li>
+                                    <li>$\\tan (180^\\circ - \\theta) = -\\tan \\theta$</li>
+                                </ul>
+                                <p>これにより、鈍角を持つ三角形の計算も可能になります。特に、鈍角のコサインとタンジェントが負の値をとることに注意が必要です。</p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>$\\theta$</th>
+                                                <th>$90^\\circ$</th>
+                                                <th>$120^\\circ$</th>
+                                                <th>$135^\\circ$</th>
+                                                <th>$150^\\circ$</th>
+                                                <th>$180^\\circ$</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>$\\sin \\theta$</td>
+                                                <td>$1$</td>
+                                                <td>$\\frac{\\sqrt{3}}{2}$</td>
+                                                <td>$\\frac{\\sqrt{2}}{2}$</td>
+                                                <td>$\\frac{1}{2}$</td>
+                                                <td>$0$</td>
+                                            </tr>
+                                            <tr>
+                                                <td>$\\cos \\theta$</td>
+                                                <td>$0$</td>
+                                                <td>$-\\frac{1}{2}$</td>
+                                                <td>$-\\frac{\\sqrt{2}}{2}$</td>
+                                                <td>$-\\frac{\\sqrt{3}}{2}$</td>
+                                                <td>$-1$</td>
+                                            </tr>
+                                            <tr>
+                                                <td>$\\tan \\theta$</td>
+                                                <td>定義されない</td>
+                                                <td>$-\\sqrt{3}$</td>
+                                                <td>$-1$</td>
+                                                <td>$-\\frac{1}{\\sqrt{3}}$</td>
+                                                <td>$0$</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>正弦定理と余弦定理</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>正弦定理</h4>
+                                <p>三角形の辺の長さと対角のサインの比率、および外接円の半径 $R$ の関係を表します。任意の三角形ABCにおいて、辺の長さを $a, b, c$、それらの対角を $A, B, C$、外接円の半径を $R$ とすると、</p>
+                                <div class="math-display">$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$$</div>
+                                <p>主に「2つの角と1つの辺」が分かっている場合に他の辺の長さを求めたり、「2つの辺と1つの角（対角）」が分かっている場合に他の角や外接円の半径を求めたりする際に使用します。</p>
+                                <h4>余弦定理</h4>
+                                <p>三角形の3辺の長さと1つの角のコサインの関係を表します。任意の三角形ABCにおいて、</p>
+                                <div class="math-display">
+                                    $$a^2 = b^2 + c^2 - 2bc \\cos A$$
+                                    $$b^2 = c^2 + a^2 - 2ca \\cos B$$
+                                    $$c^2 = a^2 + b^2 - 2ab \\cos C$$
+                                </div>
+                                <p>主に「2つの辺とその間の角」が分かっている場合に残りの辺の長さを求めたり、「3つの辺」が分かっている場合にいずれかの角の大きさを求めたりする際に使用します。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角形の面積</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>三角形の面積は、2辺の長さとその間の角のサインを使って求めることができます。</p>
+                                <div class="math-display">$$S = \\frac{1}{2}bc \\sin A$$</div>
+                                <p>同様に、$S = \\frac{1}{2}ca \\sin B$ や $S = \\frac{1}{2}ab \\sin C$ も成り立ちます。</p>
+                                <p><strong>ヘロンの公式:</strong> 3辺の長さ $a, b, c$ が分かっている場合に面積を求める公式です。まず、三角形の半周長 $s$ を求めます。</p>
+                                <div class="math-display">$$s = \\frac{a+b+c}{2}$$</div>
+                                <p>そして、面積 $S$ は次のように計算されます。</p>
+                                <div class="math-display">$$S = \\sqrt{s(s-a)(s-b)(s-c)}$$</div>
+                                <p>この公式は、三角形の3辺の長さがすべて分かっている場合に非常に便利です。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'properties-of-figures': {
+                title: "図形の性質",
+                subject: "IA",
+                icon: "fas fa-shapes",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角形の性質</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>三角形の五心</h4>
+                                <p>三角形には、特に重要な5つの点があります。</p>
+                                <ul>
+                                    <li><strong>外心:</strong> 3辺の垂直二等分線の交点。外接円の中心。</li>
+                                    <li><strong>内心:</strong> 3つの内角の二等分線の交点。内接円の中心。</li>
+                                    <li><strong>重心:</strong> 3つの中線（頂点と対辺の中点を結ぶ線）の交点。各中線を $2:1$ に内分する。</li>
+                                    <li><strong>垂心:</strong> 3つの頂点から対辺に下ろした垂線の交点。</li>
+                                    <li><strong>傍心:</strong> 1つの内角の二等分線と、他の2つの外角の二等分線の交点。傍接円の中心。</li>
+                                </ul>
+                                <h4>中点連結定理</h4>
+                                <p>三角形の2辺の中点を結ぶ線分は、残りの辺に平行で、その長さは残りの辺の長さの半分である。</p>
+                                <h4>角の二等分線の定理</h4>
+                                <p>三角形の角の二等分線は、対辺を他の2辺の比に内分する。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>円の性質</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>円周角の定理</h4>
+                                <p>1つの弧に対する円周角の大きさは一定であり、その弧に対する中心角の半分である。</p>
+                                <h4>接弦定理</h4>
+                                <p>円の接線とその接点を通る弦がなす角は、その角の内部にある弧に対する円周角に等しい。</p>
+                                <h4>方べきの定理</h4>
+                                <p>円と直線（または2つの弦）に関する長さの積の関係を表す定理です。</p>
+                                <ul>
+                                    <li>円外の点Pから引いた接線と割線: $PT^2 = PA \\cdot PB$</li>
+                                    <li>円外の点Pを通る2つの割線: $PA \\cdot PB = PC \\cdot PD$</li>
+                                </ul>
+                                <h4>接線の長さ</h4>
+                                <p>円外の1点から円に引いた2本の接線の長さは等しい。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>チェバの定理とメネラウスの定理</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>チェバの定理</h4>
+                                <p>三角形の各頂点から対辺（またはその延長）に引いた3本の線分が1点で交わるための条件を与える定理です。</p>
+                                <div class="math-display">$$\\frac{BD}{DC} \\cdot \\frac{CE}{EA} \\cdot \\frac{AF}{FB} = 1$$</div>
+                                <p>（点D, E, Fはそれぞれ辺BC, CA, AB上またはその延長上）</p>
+                                <h4>メネラウスの定理</h4>
+                                <p>三角形の各辺（またはその延長）と1本の直線が交わるときに成り立つ定理です。</p>
+                                <div class="math-display">$$\\frac{AD}{DB} \\cdot \\frac{BE}{EC} \\cdot \\frac{CF}{FA} = 1$$</div>
+                                <p>（点D, E, Fはそれぞれ辺AB, BC, CA上またはその延長上）</p>
+                                <p>これらの定理は、図形問題で線分の比を求める際に非常に強力なツールとなります。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'properties-of-integers': {
+                title: "整数の性質",
+                subject: "IA",
+                icon: "fas fa-hashtag",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>約数と倍数、素数と素因数分解</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>約数と倍数</h4>
+                                <p>整数 $a$ が整数 $b$ で割り切れるとき、$b$ を $a$ の約数、$a$ を $b$ の倍数といいます。</p>
+                                <h4>素数と合成数</h4>
+                                <ul>
+                                    <li><strong>素数:</strong> 1とその数自身以外に正の約数を持たない自然数（1は含まない）。例: 2, 3, 5, 7, 11, ...</li>
+                                    <li><strong>合成数:</b> 1より大きく、素数ではない自然数。例: 4, 6, 8, 9, 10, ...</li>
+                                </ul>
+                                <h4>素因数分解</h4>
+                                <p>自然数を素数の積の形に表すこと。素因数分解は一意に定まります（素因数分解の一意性）。</p>
+                                <p><strong>例:</strong> $12 = 2^2 \\times 3$, $30 = 2 \\times 3 \\times 5$</p>
+                                <p>素因数分解を利用して、約数の個数や約数の総和を求めることができます。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>最大公約数と最小公倍数</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>最大公約数 (GCD: Greatest Common Divisor)</h4>
+                                <p>2つ以上の整数に共通する約数のうち、最も大きいもの。</p>
+                                <h4>最小公倍数 (LCM: Least Common Multiple)</h4>
+                                <p>2つ以上の整数に共通する倍数のうち、最も小さいもの。</p>
+                                <h4>互除法 (ユークリッドの互除法)</h4>
+                                <p>2つの自然数の最大公約数を効率的に求めるアルゴリズムです。大きい数を小さい数で割り、その余りでまた割る、という操作を余りが0になるまで繰り返します。最後の0でない余りが最大公約数です。</p>
+                                <p><strong>例:</strong> 1071と1029の最大公約数</p>
+                                <div class="math-display">
+                                    $$1071 = 1029 \\times 1 + 42$$
+                                    $$1029 = 42 \\times 24 + 21$$
+                                    $$42 = 21 \\times 2 + 0$$
+                                </div>
+                                <p>したがって、最大公約数は $21$ です。</p>
+                                <h4>最大公約数と最小公倍数の関係</h4>
+                                <p>2つの自然数 $a, b$ の最大公約数を $g$、最小公倍数を $l$ とすると、$ab = gl$ の関係が成り立ちます。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>一次不定方程式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>整数を係数とする方程式で、解が整数に限定される方程式です。特に $ax + by = c$ の形のものがよく出題されます。</p>
+                                <p><strong>解の存在条件:</strong> $ax + by = c$ の整数解が存在するのは、$c$ が $a$ と $b$ の最大公約数で割り切れるときのみです。</p>
+                                <p><strong>解法:</strong></p>
+                                <ol>
+                                    <li>まず、特殊解（1組の整数解）を見つける。互除法の逆を用いる方法や、試行錯誤で見つける方法があります。</li>
+                                    <li>特殊解を利用して一般解を導く。</li>
+                                </ol>
+                                <p><strong>例:</strong> $5x + 3y = 1$ の整数解を求める。</p>
+                                <p>特殊解として $(x,y) = (2, -3)$ が見つかる ($5 \\times 2 + 3 \\times (-3) = 10 - 9 = 1$)。</p>
+                                <p>$5x + 3y = 1$ と $5(2) + 3(-3) = 1$ を辺々引くと</p>
+                                <div class="math-display">$$5(x-2) + 3(y+3) = 0 \\implies 5(x-2) = -3(y+3)$$</div>
+                                <p>5と3は互いに素なので、$x-2$ は3の倍数、$y+3$ は5の倍数でなければなりません。</p>
+                                <p>$x-2 = 3k$ より $x = 3k+2$</p>
+                                <p>$y+3 = -5k$ より $y = -5k-3$ （$k$ は整数）</p>
+                                <p>これが一般解です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>N進法 (発展)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>私たちが普段使っているのは10進法ですが、コンピュータなどでは2進法が使われます。N進法は、数をN個の数字で表現する方法です。</p>
+                                <ul>
+                                    <li><strong>10進法からN進法への変換:</strong> 変換したい数をNで割り続け、余りを下から順に並べる。</li>
+                                    <li><strong>N進法から10進法への変換:</strong> 各桁の数字にNの位の数を掛けて足し合わせる。</li>
+                                </ul>
+                                <p><strong>例:</strong> $13_{(10)}$ を2進法に変換する。</p>
+                                <p>$13 \\div 2 = 6$ 余り $1$</p>
+                                <p>$6 \\div 2 = 3$ 余り $0$</p>
+                                <p>$3 \\div 2 = 1$ 余り $1$</p>
+                                <p>$1 \\div 2 = 0$ 余り $1$</p>
+                                <p>よって、$13_{(10)} = 1101_{(2)}$</p>
+                                <p><strong>例:</strong> $1101_{(2)}$ を10進法に変換する。</p>
+                                <div class="math-display">$$1 \\times 2^3 + 1 \\times 2^2 + 0 \\times 2^1 + 1 \\times 2^0 = 8 + 4 + 0 + 1 = 13$$</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            probability: {
+                title: "場合の数と確率",
+                subject: "IA",
+                icon: "fas fa-dice",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>場合の数の基本法則</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>事象の起こりうる場合の数を数えるための基本的な法則です。</p>
+                                <h4>和の法則</h4>
+                                <p>2つの事柄A, Bが同時に起こらない（排反である）とき、Aの起こり方が $m$ 通り、Bの起こり方が $n$ 通りならば、AまたはBの起こり方は $m+n$ 通りです。</p>
+                                <p><strong>例:</strong> 1から10までのカードから1枚引くとき、偶数を引く事象と奇数を引く事象は同時に起こらない。偶数は5通り、奇数は5通りなので、どちらかを引く方法は $5+5=10$ 通り。</p>
+                                <h4>積の法則</h4>
+                                <p>2つの事柄A, Bが連続して起こるとき、Aの起こり方が $m$ 通り、そのそれぞれに対してBの起こり方が $n$ 通りならば、AとBがともに起こる方法は $m \\times n$ 通りです。</p>
+                                <p><strong>例:</strong> サイコロを2回投げるとき、1回目が偶数で2回目が奇数になる目の出方は $3 \\times 3 = 9$ 通り。</p>
+                                <p>樹形図や表を作成することで、場合の数を漏れなく、重複なく数えることができます。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>順列と組合せ</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>物を並べたり選んだりする際の場合の数を計算する手法です。</p>
+                                <h4>順列 ($_n P_r$)</h4>
+                                <p>異なる $n$ 個のものから $r$ 個を選んで「並べる」場合の数です。並び順を考慮します。</p>
+                                <div class="math-display">$$_n P_r = n(n-1)...(n-r+1) = \\frac{n!}{(n-r)!}$$</div>
+                                <p><strong>例:</strong> 5人から3人を選んで一列に並べる方法: $_5 P_3 = 5 \\times 4 \\times 3 = 60$ 通り</p>
+                                <h4>組合せ ($_n C_r$)</h4>
+                                <p>異なる $n$ 個のものから $r$ 個を「選ぶ」場合の数です。並び順は考慮しません。</p>
+                                <div class="math-display">$$_n C_r = \\frac{_n P_r}{r!} = \\frac{n!}{r!(n-r)!}$$</div>
+                                <p><strong>例:</strong> 5人から3人を選ぶ方法: $_5 C_3 = \\frac{5 \\times 4 \\times 3}{3 \\times 2 \\times 1} = 10$ 通り</p>
+                                <h4>重複順列・円順列・同じものを含む順列</h4>
+                                <ul>
+                                    <li><strong>重複順列:</strong> $n$ 個から重複を許して $r$ 個選んで並べる場合の数: $n^r$</li>
+                                    <li><strong>円順列:</strong> $n$ 個の異なるものを円形に並べる場合の数: $(n-1)!$</li>
+                                    <li><strong>同じものを含む順列:</strong> 全体で $n$ 個、そのうち $p$ 個が同じ、 $q$ 個が同じ、... の場合: $\\frac{n!}{p!q!...}$</li>
+                                </ul>
+                                <h4>重複組合せ (発展)</h4>
+                                <p>異なる $n$ 種類のものから、重複を許して $r$ 個選ぶ場合の数: $_n H_r = _{n+r-1} C_r$</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>確率の基本と法則</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>事象の起こりやすさを数値で表すのが確率です。</p>
+                                <h4>確率の基本公式</h4>
+                                <p>ある事象Aが起こる確率 $P(A)$ は、起こりうるすべての場合の数に対する事象Aが起こる場合の数の比率です。</p>
+                                <div class="math-display">$$P(A) = \\frac{(事象Aの起こる場合の数)}{(全ての場合の数)}$$</div>
+                                <p><strong>例:</strong> 1から6までの目があるサイコロを1回投げるとき、偶数の目が出る確率は $\\frac{3}{6} = \\frac{1}{2}$ です。</p>
+                                <h4>余事象の確率</h4>
+                                <p>事象Aが起こらない確率 $P(\\bar{A})$ は $1 - P(A)$ で計算できます。少なくとも〜である確率を求める際によく利用されます。</p>
+                                <div class="math-display">$$P(\\bar{A}) = 1 - P(A)$$</div>
+                                <h4>和事象の確率</h4>
+                                <p>2つの事象A, Bのいずれかが起こる確率です。</p>
+                                <div class="math-display">$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$</div>
+                                <p>特に、AとBが排反事象（同時に起こらない）の場合、$P(A \\cap B) = 0$ なので、$P(A \\cup B) = P(A) + P(B)$ となります。</p>
+                                <h4>独立事象と条件付き確率</h4>
+                                <ul>
+                                    <li><strong>独立事象:</strong> 2つの事象A, Bが互いに影響しない場合、AとBは独立であるといいます。このとき、AとBがともに起こる確率は、$P(A \\cap B) = P(A)P(B)$ となります。</li>
+                                    <li><strong>条件付き確率:</strong> ある事象Bが起こったという条件のもとで、別の事象Aが起こる確率を $P_B(A)$ または $P(A|B)$ と書き、次のように定義されます。</li>
+                                    <div class="math-display">$$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$$</div>
+                                    <p>これは、Bが起こるという前提で、その中でAも起こる確率を意味します。</p>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            data: {
+                title: "データの分析",
+                subject: "IA",
+                icon: "fas fa-chart-pie",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>データの整理と代表値</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>収集したデータを分かりやすく整理し、その特徴を把握するための基本的な手法です。</p>
+                                <h4>度数分布表とヒストグラム</h4>
+                                <ul>
+                                    <li><strong>度数分布表:</strong> データをいくつかの「階級」に分け、各階級に含まれるデータの数（度数）をまとめた表です。</li>
+                                    <li><strong>ヒストグラム:</strong> 度数分布表をグラフにしたもので、各階級の度数を長方形の面積で表します。データの分布の様子を視覚的に把握できます。</li>
+                                    <li><strong>相対度数:</strong> 各階級の度数を全データの合計で割ったもので、全体に対する割合を示します。</li>
+                                </ul>
+                                <h4>代表値</h4>
+                                <p>データの中心的な傾向を示す値です。</p>
+                                <ul>
+                                    <li><strong>平均値 ($\\bar{x}$):</strong> データの合計をデータの個数で割ったもの。最も一般的によく使われる代表値です。外れ値の影響を受けやすいという特徴があります。</li>
+                                    <div class="math-display">$$\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i$$</div>
+                                    <li><strong>中央値 (メディアン):</strong> データを小さい順に並べたときの中央に位置する値。データの個数が偶数の場合は中央2つの値の平均です。外れ値の影響を受けにくい特徴があります。</li>
+                                    <li><strong>最頻値 (モード):</b> データの中で最も多く出現する値。度数分布表では、最も度数の大きい階級の階級値が最頻値とされます。</li>
+                                </ul>
+                                <p><strong>例:</strong> データセット $2, 4, 6, 8, 10$ の平均値は $\\frac{2+4+6+8+10}{5} = \\frac{30}{5} = 6$ です。中央値も6、最頻値はありません。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>データの散らばりの度合い</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>データがどの程度散らばっているかを示す値です。代表値だけではデータの全体像は把握できません。</p>
+                                <ul>
+                                    <li><strong>範囲:</strong> 最大値 - 最小値。最も単純な散らばりの指標ですが、外れ値に弱いです。</li>
+                                    <li><strong>四分位範囲:</strong> 第3四分位数 (Q3) - 第1四分位数 (Q1)。データの真ん中50%の散らばりを表し、外れ値の影響を受けにくいです。</li>
+                                    <li><strong>分散 ($s^2$):</strong> 各データと平均値との差（偏差）の2乗の平均。データの散らばりを数値化したもので、計算上扱いやすいです。</li>
+                                    <div class="math-display">$$s^2 = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})^2$$</div>
+                                    <li><strong>標準偏差 ($s$):</strong> 分散の正の平方根。元の単位で散らばりを表すため、分散よりも直感的に理解しやすいです。</li>
+                                    <div class="math-display">$$s = \\sqrt{s^2}$$</div>
+                                </ul>
+                                <h4>四分位数と箱ひげ図</h4>
+                                <p>データを小さい順に並べたとき、データを4等分する値が四分位数です。第1四分位数 (Q1)、中央値 (Q2=メディアン)、第3四分位数 (Q3) があります。</p>
+                                <p>箱ひげ図は、最小値、Q1、中央値、Q3、最大値を一本の図で表し、データの分布や散らばりを視覚的に把握するのに役立ちます。箱の長さが四分位範囲を示し、ひげの長さがデータの広がりを示します。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>データの相関</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>2つのデータ（変数）間にどのような関係があるかを示すのが相関です。</p>
+                                <h4>散布図</h4>
+                                <p>2つの変数の関係を視覚的に示すグラフです。横軸に一方の変数、縦軸にもう一方の変数をとり、各データを点でプロットします。点の分布のパターンから相関の有無や強さ、方向を読み取ることができます。</p>
+                                <ul>
+                                    <li><strong>正の相関:</strong> 点が右上がりに分布する。一方の変数が増加すると、もう一方も増加する傾向。</li>
+                                    <li><strong>負の相関:</strong> 点が右下がりに分布する。一方の変数が増加すると、もう一方も減少する傾向。</li>
+                                    <li><strong>相関なし:</strong> 点がばらばらに分布する。変数間に特定の関係が見られない。</li>
+                                </ul>
+                                <h4>共分散と相関係数</h4>
+                                <p>2つのデータ間の関係の強さや方向を数値で示す指標です。</p>
+                                <ul>
+                                    <li><strong>共分散 ($s_{xy}$):</strong> 2つの変数の偏差の積の平均。正の値なら正の相関、負の値なら負の相関を示しますが、単位に依存するため異なるデータ間の比較には不向きです。</li>
+                                    <div class="math-display">$$s_{xy} = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})(y_i - \\bar{y})$$</div>
+                                    <li><strong>相関係数 ($r$):</b> 共分散をそれぞれの標準偏差の積で割った値。$-1 \\le r \\le 1$ の範囲をとり、単位に依存しないため異なるデータ間で相関の強さを比較できます。</li>
+                                    <div class="math-display">$$r = \\frac{s_{xy}}{s_x s_y}$$</div>
+                                </ul>
+                                <p>相関係数の値と相関の強さ:</p>
+                                <ul>
+                                    <li>$r$ が1に近いほど強い正の相関</li>
+                                    <li>$r$ が-1に近いほど強い負の相関</li>
+                                    <li>$r$ が0に近いほど相関が弱い、または相関がない</li>
+                                </ul>
+                                <p>相関関係は因果関係を意味しないことに注意が必要です。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            // --- 数II のトピック ---
+            'various-expressions-II': {
+                title: "様々な式",
+                subject: "IIB",
+                icon: "fas fa-calculator",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>整式の除法と分数式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>整式の除法</h4>
+                                <p>多項式を多項式で割る計算です。割り算の原理 $A = BQ + R$ （$R$ の次数は $B$ の次数より小さい）が基本となります。</p>
+                                <p><strong>例:</strong> $(x^3 - 2x^2 + 3x - 1) \\div (x - 1)$</p>
+                                <p>商は $x^2 - x + 2$、余りは $1$ となります。</p>
+                                <h4>分数式</h4>
+                                <p>分母と分子が多項式である式です。分数式の加減乗除や約分、通分は、分数の計算と同様に行います。</p>
+                                <p><strong>約分:</strong> 分母と分子に共通因数があれば約分できます。</p>
+                                <div class="math-display">$$\\frac{x^2 - 1}{x - 1} = \\frac{(x-1)(x+1)}{x-1} = x+1 \\quad (x \\ne 1)$$</div>
+                                <p><strong>通分:</strong> 異なる分母を持つ分数式を計算するために、分母を最小公倍数に揃えることです。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>恒等式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>ある文字にどのような値を代入しても常に成り立つ等式を「恒等式」といいます。これに対し、特定の値を代入したときにのみ成り立つ等式は「方程式」です。</p>
+                                <h4>恒等式の性質</h4>
+                                <p>$ax+b=0$ が $x$ についての恒等式ならば、$a=0$ かつ $b=0$ です。</p>
+                                <p>$ax^2+bx+c=0$ が $x$ についての恒等式ならば、$a=0$ かつ $b=0$ かつ $c=0$ です。</p>
+                                <p>また、$ax+b = a'x+b'$ が $x$ についての恒等式ならば、$a=a'$ かつ $b=b'$ です。</p>
+                                <h4>恒等式の証明方法</h4>
+                                <ul>
+                                    <li><strong>係数比較法:</strong> 両辺の同じ次数の項の係数を比較して、等しいことを示す。</li>
+                                    <li><strong>数値代入法:</strong> 適切な数値を代入して、等式が成り立つことを示す。ただし、数値代入法で「恒等式であること」を示すには、代入する値の数に注意が必要です。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>高次方程式 (複素数、解と係数の関係、因数定理・剰余の定理)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>複素数と虚数</h4>
+                                <p>実数に虚数単位 $i$ ($i^2 = -1$) を加えた数全体を複素数といいます。複素数は $a+bi$ （$a, b$ は実数）の形で表され、$b \\ne 0$ のとき虚数と呼びます。</p>
+                                <p><strong>共役な複素数:</strong> 複素数 $a+bi$ に対して $a-bi$ を共役な複素数といい、$\\overline{z}$ で表します。</p>
+                                <h4>二次方程式の解の判別 (複素数範囲)</h4>
+                                <p>二次方程式 $ax^2+bx+c=0$ の判別式 $D=b^2-4ac$ の符号により、解の種類が分かります。</p>
+                                <ul>
+                                    <li>$D > 0$: 異なる2つの実数解</li>
+                                    <li>$D = 0$: 重解（実数）</li>
+                                    <li>$D < 0$: 異なる2つの虚数解</li>
+                                </ul>
+                                <h4>因数定理と剰余の定理</h4>
+                                <p><strong>剰余の定理:</strong> 多項式 $P(x)$ を $x-k$ で割った余りは $P(k)$ である。</p>
+                                <p><strong>因数定理:</strong> 多項式 $P(x)$ において、$P(k)=0$ ならば $P(x)$ は $x-k$ を因数に持つ。</p>
+                                <p>これらは高次方程式の因数分解や解を求める際に非常に重要です。</p>
+                                <h4>高次方程式の解法</h4>
+                                <p>三次方程式や四次方程式は、因数定理を用いて因数分解し、二次方程式に帰着させて解くのが一般的です。</p>
+                                <h4>解と係数の関係 (三次方程式)</h4>
+                                <p>三次方程式 $ax^3+bx^2+cx+d=0$ の3つの解を $\\alpha, \\beta, \\gamma$ とすると、</p>
+                                <div class="math-display">
+                                    $$\\alpha + \\beta + \\gamma = -\\frac{b}{a}$$
+                                    $$\\alpha \\beta + \\beta \\gamma + \\gamma \\alpha = \\frac{c}{a}$$
+                                    $$\\alpha \\beta \\gamma = -\\frac{d}{a}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'geometry-equations-II': {
+                title: "図形と方程式",
+                subject: "IIB",
+                icon: "fas fa-vector-square",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>点と直線</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>座標と距離</h4>
+                                <p>2点 $A(x_1, y_1)$, $B(x_2, y_2)$ 間の距離 $AB$ は、</p>
+                                <div class="math-display">$$AB = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$</div>
+                                <h4>内分点・外分点</h4>
+                                <p>2点 $A(x_1, y_1)$, $B(x_2, y_2)$ を $m:n$ に内分する点Pの座標は、</p>
+                                <div class="math-display">$$P\\left(\\frac{nx_1+mx_2}{m+n}, \\frac{ny_1+my_2}{m+n}\\right)$$</div>
+                                <p>中点は $m=n=1$ の場合です。</p>
+                                <p>2点 $A(x_1, y_1)$, $B(x_2, y_2)$ を $m:n$ に外分する点Qの座標は、$n$ を $-n$ に置き換えて、</p>
+                                <div class="math-display">$$Q\\left(\\frac{-nx_1+mx_2}{m-n}, \\frac{-ny_1+my_2}{m-n}\\right)$$</div>
+                                <h4>直線の方程式</h4>
+                                <ul>
+                                    <li><strong>点と傾き:</strong> 点 $(x_1, y_1)$ を通り、傾きが $m$ の直線: $y - y_1 = m(x - x_1)$</li>
+                                    <li><strong>2点を通る:</strong> 2点 $(x_1, y_1)$, $(x_2, y_2)$ を通る直線: $y - y_1 = \\frac{y_2-y_1}{x_2-x_1}(x - x_1)$ （$x_1 \\ne x_2$ の場合）</li>
+                                    <li><strong>一般形:</strong> $ax + by + c = 0$</li>
+                                </ul>
+                                <h4>2直線の関係</h4>
+                                <p>傾き $m_1, m_2$ の2直線について、</p>
+                                <ul>
+                                    <li><strong>平行:</strong> $m_1 = m_2$</li>
+                                    <li><strong>垂直:</strong> $m_1 m_2 = -1$</li>
+                                </ul>
+                                <h4>点と直線の距離</h4>
+                                <p>点 $(x_0, y_0)$ と直線 $ax+by+c=0$ の距離 $d$ は、</p>
+                                <div class="math-display">$$d = \\frac{|ax_0+by_0+c|}{\\sqrt{a^2+b^2}}$$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>円の方程式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>円の標準形</h4>
+                                <p>中心 $(a, b)$、半径 $r$ の円の方程式は、</p>
+                                <div class="math-display">$$(x-a)^2 + (y-b)^2 = r^2$$</div>
+                                <h4>円の一般形</h4>
+                                <p>$x^2 + y^2 + Lx + My + N = 0$ の形も円を表します。平方完成することで標準形に直せます。</p>
+                                <h4>円と直線の関係</h4>
+                                <p>円と直線が共有点を持つかどうかは、円の中心から直線までの距離 $d$ と円の半径 $r$ を比較することで判断できます。</p>
+                                <ul>
+                                    <li>$d < r$: 異なる2点で交わる</li>
+                                    <li>$d = r$: 接する（1点で交わる）</li>
+                                    <li>$d > r$: 共有点を持たない</li>
+                                </ul>
+                                <h4>円の接線の方程式</h4>
+                                <p>円 $x^2 + y^2 = r^2$ 上の点 $(x_1, y_1)$ における接線の方程式は、</p>
+                                <div class="math-display">$$x_1 x + y_1 y = r^2$$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>軌跡と領域</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>ある条件を満たしながら動く点の集まりが描く図形を「軌跡」といいます。軌跡を求めるには、動く点の座標を $(x, y)$ とおき、与えられた条件を $x, y$ の関係式で表します。</p>
+                                <p><strong>例:</strong> 2点A, Bからの距離が等しい点の軌跡は、線分ABの垂直二等分線です。</p>
+                                <h4>領域</h4>
+                                <p>不等式が表す平面上の範囲を「領域」といいます。</p>
+                                <ul>
+                                    <li>直線 $y = mx+c$ の場合:
+                                        <ul>
+                                            <li>$y > mx+c$: 直線の上側</li>
+                                            <li>$y < mx+c$: 直線の下側</li>
+                                        </ul>
+                                    </li>
+                                    <li>円 $(x-a)^2 + (y-b)^2 = r^2$ の場合:
+                                        <ul>
+                                            <li>$(x-a)^2 + (y-b)^2 < r^2$: 円の内部</li>
+                                            <li>$(x-a)^2 + (y-b)^2 > r^2$: 円の外部</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p>境界線を含む場合は等号を含み、含まない場合は等号を含みません。</p>
+                                <p>複数の不等式で表される領域は、それぞれの不等式が表す領域の共通部分となります。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'exponential-logarithmic-II': {
+                title: "指数・対数関数",
+                subject: "IIB",
+                icon: "fas fa-chart-area",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>指数関数とそのグラフ</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>指数の拡張</h4>
+                                <p>指数は、自然数から整数、有理数へと拡張されます。</p>
+                                <ul>
+                                    <li>$a^0 = 1$ （$a \\ne 0$）</li>
+                                    <li>$a^{-n} = \\frac{1}{a^n}$</li>
+                                    <li>$a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$</li>
+                                </ul>
+                                <h4>指数法則</h4>
+                                <p>実数指数に対しても以下の法則が成り立ちます。</p>
+                                <div class="math-display">
+                                    $$a^p a^q = a^{p+q}$$
+                                    $$\\frac{a^p}{a^q} = a^{p-q}$$
+                                    $$(a^p)^q = a^{pq}$$
+                                    $$(ab)^p = a^p b^p$$
+                                    $$\\left(\\frac{a}{b}\\right)^p = \\frac{a^p}{b^p}$$
+                                </div>
+                                <h4>指数関数 $y = a^x$ のグラフ</h4>
+                                <ul>
+                                    <li>$a > 1$ のとき: 単調増加関数。$x$ が増えると $y$ も増える。</li>
+                                    <li>$0 < a < 1$ のとき: 単調減少関数。$x$ が増えると $y$ は減る。</li>
+                                    <li>いずれの場合も、点 $(0, 1)$ を通り、x軸が漸近線となる。</li>
+                                    <li>定義域は実数全体、値域は正の実数全体。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>対数とその性質</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>対数の定義</h4>
+                                <p>$a^p = M$ のとき、$p = \\log_a M$ と書きます。$a$ を底、$M$ を真数と呼びます。</p>
+                                <p><strong>条件:</strong> 底 $a > 0, a \\ne 1$。真数 $M > 0$。</p>
+                                <h4>対数の性質</h4>
+                                <div class="math-display">
+                                    $$\\log_a 1 = 0$$
+                                    $$\\log_a a = 1$$
+                                    $$\\log_a MN = \\log_a M + \\log_a N$$
+                                    $$\\log_a \\frac{M}{N} = \\log_a M - \\log_a N$$
+                                    $$\\log_a M^k = k \\log_a M$$
+                                </div>
+                                <h4>底の変換公式</h4>
+                                <p>異なる底の対数を変換する際に使用します。</p>
+                                <div class="math-display">$$\\log_a b = \\frac{\\log_c b}{\\log_c a}$$</div>
+                                <p>特に、$c=b$ とすると $\\log_a b = \\frac{1}{\\log_b a}$ となります。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>対数関数とそのグラフ</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>対数関数 $y = \\log_a x$ のグラフ</h4>
+                                <p>指数関数 $y=a^x$ の逆関数です。グラフは直線 $y=x$ に関して対称になります。</p>
+                                <ul>
+                                    <li>$a > 1$ のとき: 単調増加関数。$x$ が増えると $y$ も増える。</li>
+                                    <li>$0 < a < 1$ のとき: 単調減少関数。$x$ が増えると $y$ は減る。</li>
+                                    <li>いずれの場合も、点 $(1, 0)$ を通り、y軸が漸近線となる。</li>
+                                    <li>定義域は正の実数全体、値域は実数全体。</li>
+                                </ul>
+                                <h4>対数方程式・不等式</h4>
+                                <p>対数関数を含む方程式や不等式を解く際は、まず真数条件と底の条件を確認することが重要です。</p>
+                                <p><strong>例:</strong> $\\log_2 (x-1) = 3$ のとき、真数条件より $x-1 > 0 \\implies x > 1$。定義から $x-1 = 2^3 = 8$ より $x=9$。</p>
+                                <p><strong>例:</strong> $\\log_2 (x-1) < 3$ のとき、$x>1$ かつ $x-1 < 2^3 = 8$ より $x < 9$。したがって $1 < x < 9$。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'trigonometric-II': {
+                title: "三角関数",
+                subject: "IIB",
+                icon: "fas fa-wave-square",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>一般角と弧度法</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>一般角</h4>
+                                <p>角度を $360^\\circ$ を超えて、または負の向きに拡張したものです。$\\theta + 360^\\circ \\times n$ （$n$ は整数）の形で表されます。</p>
+                                <h4>弧度法 (ラジアン)</h4>
+                                <p>半径1の円（単位円）において、弧の長さで角度を表す方法です。$180^\\circ = \\pi$ ラジアン。</p>
+                                <div class="math-display">
+                                    $$1 \\text{ラジアン} = \\frac{180^\\circ}{\\pi} \\approx 57.3^\\circ$$
+                                    $$1^\\circ = \\frac{\\pi}{180} \\text{ラジアン}$$
+                                </div>
+                                <p>扇形の弧の長さ $l = r\\theta$、面積 $S = \\frac{1}{2}r^2\\theta = \\frac{1}{2}rl$ （$\\theta$ は弧度法）</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角関数の定義と性質</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>三角関数の定義 (単位円)</h4>
+                                <p>単位円上の点P$(x,y)$ と動径OPがx軸の正の向きとなす角を $\\theta$ とすると、</p>
+                                <div class="math-display">
+                                    $$\\sin \\theta = y$$
+                                    $$\\cos \\theta = x$$
+                                    $$\\tan \\theta = \\frac{y}{x}$$
+                                </div>
+                                <h4>三角関数の相互関係</h4>
+                                <div class="math-display">
+                                    $$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$
+                                    $$\\sin^2 \\theta + \\cos^2 \\theta = 1$$
+                                    $$1 + \\tan^2 \\theta = \\frac{1}{\\cos^2 \\theta}$$
+                                </div>
+                                <h4>周期性</h4>
+                                <p>$\\sin \\theta, \\cos \\theta$ は周期 $2\\pi$ ($360^\\circ$)、$\\tan \\theta$ は周期 $\\pi$ ($180^\\circ$) の関数です。</p>
+                                <h4>対称性</h4>
+                                <ul>
+                                    <li>$\\sin(-\\theta) = -\\sin \\theta$</li>
+                                    <li>$\\cos(-\\theta) = \\cos \\theta$</li>
+                                    <li>$\\tan(-\\theta) = -\\tan \\theta$</li>
+                                </ul>
+                                <p>その他、$\\theta + \\pi/2, \\theta + \\pi, \\theta + 3\\pi/2$ との間の関係式があります。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角関数のグラフ</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>$y = \\sin \\theta$ のグラフ</h4>
+                                <ul>
+                                    <li>周期 $2\\pi$</li>
+                                    <li>値域 $-1 \\le y \\le 1$</li>
+                                    <li>原点対称</li>
+                                </ul>
+                                <h4>$y = \\cos \\theta$ のグラフ</h4>
+                                <ul>
+                                    <li>周期 $2\\pi$</li>
+                                    <li>値域 $-1 \\le y \\le 1$</li>
+                                    <li>y軸対称</li>
+                                </ul>
+                                <h4>$y = \\tan \\theta$ のグラフ</h4>
+                                <ul>
+                                    <li>周期 $\\pi$</li>
+                                    <li>値域 実数全体</li>
+                                    <li>漸近線 $\\theta = \\frac{\\pi}{2} + n\\pi$ （$n$ は整数）</li>
+                                </ul>
+                                <p>これらのグラフの平行移動や拡大・縮小も学習します。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>加法定理と応用 (2倍角、半角、和積・積和)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>加法定理</h4>
+                                <div class="math-display">
+                                    $$\\sin(\\alpha \\pm \\beta) = \\sin \\alpha \\cos \\beta \\pm \\cos \\alpha \\sin \\beta$$
+                                    $$\\cos(\\alpha \\pm \\beta) = \\cos \\alpha \\cos \\beta \\mp \\sin \\alpha \\sin \\beta$$
+                                    $$\\tan(\\alpha \\pm \\beta) = \\frac{\\tan \\alpha \\pm \\tan \\beta}{1 \\mp \\tan \\alpha \\tan \\beta}$$
+                                </div>
+                                <h4>2倍角の公式</h4>
+                                <div class="math-display">
+                                    $$\\sin 2\\alpha = 2 \\sin \\alpha \\cos \\alpha$$
+                                    $$\\cos 2\\alpha = \\cos^2 \\alpha - \\sin^2 \\alpha = 2 \\cos^2 \\alpha - 1 = 1 - 2 \\sin^2 \\alpha$$
+                                    $$\\tan 2\\alpha = \\frac{2 \\tan \\alpha}{1 - \\tan^2 \\alpha}$$
+                                </div>
+                                <h4>半角の公式</h4>
+                                <div class="math-display">
+                                    $$\\sin^2 \\frac{\\alpha}{2} = \\frac{1 - \\cos \\alpha}{2}$$
+                                    $$\\cos^2 \\frac{\\alpha}{2} = \\frac{1 + \\cos \\alpha}{2}$$
+                                    $$\\tan^2 \\frac{\\alpha}{2} = \\frac{1 - \\cos \\alpha}{1 + \\cos \\alpha}$$
+                                </div>
+                                <h4>和積・積和の公式 (発展)</h4>
+                                <p>和積の公式は積の形を和の形に、積和の公式は和の形を積の形に変換します。</p>
+                                <div class="math-display">
+                                    $$\\sin A + \\sin B = 2 \\sin \\frac{A+B}{2} \\cos \\frac{A-B}{2}$$
+                                    $$\\cos A + \\cos B = 2 \\cos \\frac{A+B}{2} \\cos \\frac{A-B}{2}$$
+                                    $$2 \\sin \\alpha \\cos \\beta = \\sin(\\alpha+\\beta) + \\sin(\\alpha-\\beta)$$
+                                </div>
+                                <p>これらの公式は、三角関数を含む方程式や不等式を解く際、または最大・最小値を求める際に非常に強力です。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>三角方程式・不等式と合成 (発展)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>三角関数を含む方程式や不等式は、単位円やグラフを利用して解きます。</p>
+                                <p><strong>例:</strong> $2\\sin \\theta = 1$ ($0 \\le \\theta < 2\\pi$) のとき、$\\sin \\theta = \\frac{1}{2}$ より $\\theta = \\frac{\\pi}{6}, \\frac{5\\pi}{6}$。</p>
+                                <p><strong>例:</strong> $\\cos \\theta > \\frac{1}{2}$ ($0 \\le \\theta < 2\\pi$) のとき、$\\theta$ の範囲は $0 \\le \\theta < \\frac{\\pi}{3}, \\frac{5\\pi}{3} < \\theta < 2\\pi$。</p>
+                                <p>角度の範囲に注意し、一般解を求める場合は $2n\\pi$ や $n\\pi$ を加えます。</p>
+                                <h4>三角関数の合成</h4>
+                                <p>$a \\sin \\theta + b \\cos \\theta$ の形を $R \\sin (\\theta + \\alpha)$ の形に変形することで、最大値・最小値や方程式・不等式を解きやすくなります。</p>
+                                <div class="math-display">$$a \\sin \\theta + b \\cos \\theta = \\sqrt{a^2+b^2} \\sin (\\theta + \\alpha)$$</div>
+                                <p>ここで、$\\cos \\alpha = \\frac{a}{\\sqrt{a^2+b^2}}$, $\\sin \\alpha = \\frac{b}{\\sqrt{a^2+b^2}}$ です。</p>
+                                <p><strong>例:</strong> $\\sin \\theta + \\sqrt{3} \\cos \\theta$ を合成する。</p>
+                                <p>$\\sqrt{1^2 + (\\sqrt{3})^2} = \\sqrt{1+3} = 2$</p>
+                                <p>$\\cos \\alpha = \\frac{1}{2}, \\sin \\alpha = \\frac{\\sqrt{3}}{2}$ となる $\\alpha$ は $\\frac{\\pi}{3}$。</p>
+                                <p>よって、$\\sin \\theta + \\sqrt{3} \\cos \\theta = 2 \\sin (\\theta + \\frac{\\pi}{3})$。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'differentiation-II': {
+                title: "微分法",
+                subject: "IIB",
+                icon: "fas fa-chart-bar",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>微分係数と導関数</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>平均変化率</h4>
+                                <p>関数 $y=f(x)$ において、$x$ の値が $a$ から $b$ まで変化するときの平均変化率は、</p>
+                                <div class="math-display">$$\\frac{f(b) - f(a)}{b - a}$$</div>
+                                <h4>微分係数</h4>
+                                <p>平均変化率において、$b$ を $a$ に限りなく近づけたときの極限値です。点 $a$ における接線の傾きを表します。</p>
+                                <div class="math-display">$$f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}$$</div>
+                                <h4>導関数</h4>
+                                <p>関数 $f(x)$ の各点における微分係数を求める関数です。$f'(x)$ と書きます。</p>
+                                <div class="math-display">$$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$</div>
+                                <h4>導関数の計算 (公式)</h4>
+                                <ul>
+                                    <li>$(c)' = 0$ （$c$ は定数）</li>
+                                    <li>$(x^n)' = nx^{n-1}$</li>
+                                    <li>$(cf(x))' = cf'(x)$</li>
+                                    <li>$(f(x) \\pm g(x))' = f'(x) \\pm g'(x)$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>接線の方程式</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>関数 $y=f(x)$ のグラフ上の点 $(a, f(a))$ における接線の方程式は、</p>
+                                <div class="math-display">$$y - f(a) = f'(a)(x - a)$$</div>
+                                <p>これは、点 $(a, f(a))$ を通り、傾きが $f'(a)$ の直線の方程式です。</p>
+                                <p><strong>手順:</strong></p>
+                                <ol>
+                                    <li>関数 $f(x)$ の導関数 $f'(x)$ を求める。</li>
+                                    <li>接点の $x$ 座標 $a$ を代入して、接線の傾き $f'(a)$ を求める。</li>
+                                    <li>接点の $y$ 座標 $f(a)$ を求める。</li>
+                                    <li>点と傾きの公式 $y - y_1 = m(x - x_1)$ に代入する。</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>関数の増減と極大・極小</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>関数の増減</h4>
+                                <ul>
+                                    <li>$f'(x) > 0$ のとき、関数 $f(x)$ は増加する。</li>
+                                    <li>$f'(x) < 0$ のとき、関数 $f(x)$ は減少する。</li>
+                                    <li>$f'(x) = 0$ のとき、関数は停留する可能性がある（極値、変曲点など）。</li>
+                                </ul>
+                                <p>増減表を作成することで、関数の増減を視覚的に把握できます。</p>
+                                <h4>極大値・極小値 (極値)</h4>
+                                <ul>
+                                    <li>$f'(x)$ の符号が正から負に変わるとき、関数は**極大値**をとる。</li>
+                                    <li>$f'(x)$ の符号が負から正に変わるとき、関数は**極小値**をとる。</li>
+                                </ul>
+                                <p>極値は関数のグラフの「山」や「谷」に相当します。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>最大・最小と方程式・不等式への応用</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>定義域がある場合、関数の最大値・最小値は、極値または定義域の端点でとります。</p>
+                                <p><strong>手順:</strong></p>
+                                <ol>
+                                    <li>導関数を求め、$f'(x)=0$ となる $x$ の値を求める。</li>
+                                    <li>増減表を作成し、極値を求める。</li>
+                                    <li>定義域の端点での関数の値を求める。</li>
+                                    <li>これらの値の中から最大値と最小値を判断する。</li>
+                                </ol>
+                                <h4>方程式・不等式への応用</h4>
+                                <p>微分法を利用して、方程式の実数解の個数を調べたり、不等式が常に成り立つことを証明したりできます。</p>
+                                <ul>
+                                    <li><strong>方程式:</strong> $f(x)=0$ の実数解の個数は、関数 $y=f(x)$ のグラフとx軸との共有点の個数に等しい。極値の符号などを調べることで判断できます。</li>
+                                    <li><strong>不等式:</strong> $f(x) \\ge 0$ を証明するには、関数 $f(x)$ の最小値が0以上であることを示せばよい。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'integration-II': {
+                title: "積分法",
+                subject: "IIB",
+                icon: "fas fa-chart-bar",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>不定積分</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>原始関数と不定積分</h4>
+                                <p>関数 $F(x)$ を微分すると $f(x)$ になるとき、$F(x)$ を $f(x)$ の原始関数といいます。</p>
+                                <p>原始関数 $F(x)$ に任意の定数 $C$ を加えた $F(x)+C$ を $f(x)$ の不定積分といい、$\\int f(x) dx$ で表します。$C$ を積分定数と呼びます。</p>
+                                <div class="math-display">$$\\int f(x) dx = F(x) + C \\quad (F'(x) = f(x))$$</div>
+                                <h4>不定積分の計算 (公式)</h4>
+                                <ul>
+                                    <li>$\\int k dx = kx + C$ （$k$ は定数）</li>
+                                    <li>$\\int x^n dx = \\frac{1}{n+1}x^{n+1} + C$ （$n \\ne -1$）</li>
+                                    <li>$\\int k f(x) dx = k \\int f(x) dx$</li>
+                                    <li>$\\int (f(x) \\pm g(x)) dx = \\int f(x) dx \\pm \\int g(x) dx$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>定積分と面積</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>定積分</h4>
+                                <p>関数 $f(x)$ の原始関数を $F(x)$ とするとき、$f(x)$ の $a$ から $b$ までの定積分を次のように定義します。</p>
+                                <div class="math-display">$$\\int_a^b f(x) dx = [F(x)]_a^b = F(b) - F(a)$$</div>
+                                <p>$a, b$ をそれぞれ下端、上端と呼びます。</p>
+                                <h4>定積分の性質</h4>
+                                <div class="math-display">
+                                    $$\\int_a^a f(x) dx = 0$$
+                                    $$\\int_a^b f(x) dx = -\\int_b^a f(x) dx$$
+                                    $$\\int_a^b f(x) dx + \\int_b^c f(x) dx = \\int_a^c f(x) dx$$
+                                </div>
+                                <h4>面積</h4>
+                                <p>曲線 $y=f(x)$ とx軸、および2直線 $x=a, x=b$ で囲まれた部分の面積 $S$ は、</p>
+                                <ul>
+                                    <li>$f(x) \\ge 0$ の区間では: $S = \\int_a^b f(x) dx$</li>
+                                    <li>$f(x) \\le 0$ の区間では: $S = \\int_a^b -f(x) dx = -\\int_a^b f(x) dx$</li>
+                                </ul>
+                                <p>一般には $S = \\int_a^b |f(x)| dx$ となります。</p>
+                                <p>2つの曲線 $y=f(x)$ と $y=g(x)$ で囲まれた部分の面積は、</p>
+                                <div class="math-display">$$S = \\int_a^b |f(x) - g(x)| dx$$</div>
+                                <p>（$a, b$ は2曲線の交点のx座標）</p>
+                                <h4>速度と距離 (発展)</h4>
+                                <p>点Pが数直線上を動くとき、時刻 $t$ における速度を $v(t)$ とすると、</p>
+                                <ul>
+                                    <li>時刻 $t$ における位置 $s(t)$ は、速度を積分することで求められます。$s(t) = \\int v(t) dt$</li>
+                                    <li>時刻 $t_1$ から $t_2$ までの移動距離は、速度の絶対値を積分することで求められます。$\\int_{t_1}^{t_2} |v(t)| dt$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            // --- 数B のトピック ---
+            'sequences-B': {
+                title: "数列",
+                subject: "IIB",
+                icon: "fas fa-list-ol",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>等差数列</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>等差数列とは</h4>
+                                <p>隣り合う項の差が一定である数列を等差数列といいます。この一定の差を「公差」と呼びます。</p>
+                                <h4>一般項</h4>
+                                <p>初項 $a_1$、公差 $d$ の等差数列の第 $n$ 項 $a_n$ は、</p>
+                                <div class="math-display">$$a_n = a_1 + (n-1)d$$</div>
+                                <h4>和の公式</h4>
+                                <p>初項 $a_1$、末項 $a_n$、項数 $n$ の等差数列の和 $S_n$ は、</p>
+                                <div class="math-display">$$S_n = \\frac{n(a_1 + a_n)}{2}$$</div>
+                                <p>または、公差 $d$ を用いて、</p>
+                                <div class="math-display">$$S_n = \\frac{n\\{2a_1 + (n-1)d\\}}{2}$$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>等比数列</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>等比数列とは</h4>
+                                <p>隣り合う項の比が一定である数列を等比数列といいます。この一定の比を「公比」と呼びます。</p>
+                                <h4>一般項</h4>
+                                <p>初項 $a_1$、公比 $r$ の等比数列の第 $n$ 項 $a_n$ は、</p>
+                                <div class="math-display">$$a_n = a_1 r^{n-1}$$</div>
+                                <h4>和の公式</h4>
+                                <p>初項 $a_1$、公比 $r$、項数 $n$ の等比数列の和 $S_n$ は、</p>
+                                <ul>
+                                    <li>$r = 1$ のとき: $S_n = na_1$</li>
+                                    <li>$r \\ne 1$ のとき:
+                                        <div class="math-display">$$S_n = \\frac{a_1(r^n - 1)}{r - 1} = \\frac{a_1(1 - r^n)}{1 - r}$$</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>様々な数列 (階差数列、漸化式、Σ記号)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>階差数列</h4>
+                                <p>数列 $\{a_n\}$ の隣り合う項の差 $b_n = a_{n+1} - a_n$ で作られる数列 $\{b_n\}$ を階差数列といいます。</p>
+                                <p>数列 $\{a_n\}$ の一般項は、階差数列 $\{b_n\}$ を用いて次のように表されます。</p>
+                                <div class="math-display">$$a_n = a_1 + \\sum_{k=1}^{n-1} b_k \\quad (n \\ge 2)$$</div>
+                                <p>$n=1$ の場合は $a_1$ となります。</p>
+                                <h4>漸化式</h4>
+                                <p>数列の各項を、それ以前の項を用いて定義する式です。様々な形の漸化式があり、一般項を求める方法もそれぞれ異なります。</p>
+                                <ul>
+                                    <li>例: $a_{n+1} = a_n + d$ (等差数列型)</li>
+                                    <li>例: $a_{n+1} = r a_n$ (等比数列型)</li>
+                                    <li>例: $a_{n+1} = p a_n + q$ (特性方程式を利用して等比数列型に帰着)</li>
+                                    <li>例: $a_{n+1} = p a_n + q^n$ (両辺を $q^{n+1}$ で割るなどして等差数列型に帰着)</li>
+                                </ul>
+                                <h4>Σ (シグマ) 記号</h4>
+                                <p>数列の和を表す記号です。</p>
+                                <div class="math-display">$$\\sum_{k=1}^{n} a_k = a_1 + a_2 + ... + a_n$$</div>
+                                <p><strong>Σの公式:</strong></p>
+                                <div class="math-display">
+                                    $$\\sum_{k=1}^{n} k = \\frac{1}{2}n(n+1)$$
+                                    $$\\sum_{k=1}^{n} k^2 = \\frac{1}{6}n(n+1)(2n+1)$$
+                                    $$\\sum_{k=1}^{n} k^3 = \\left(\\frac{1}{2}n(n+1)\\right)^2$$
+                                </div>
+                                <h4>群数列 (発展)</h4>
+                                <p>数列の項をいくつかの群に分け、それぞれの群が特定の規則に従う数列です。群の規則性を見つけて、目的の項や和を求めます。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'vectors-B': {
+                title: "ベクトル",
+                subject: "IIB",
+                icon: "fas fa-arrows-alt",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>平面ベクトル</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>ベクトルとは</h4>
+                                <p>大きさと向きを持つ量です。有向線分で表され、$\\vec{a}$ や $\\overrightarrow{AB}$ のように書きます。</p>
+                                <h4>ベクトルの成分表示</h4>
+                                <p>座標平面上で、始点を原点に合わせた終点の座標でベクトルを表します。$\\vec{a} = (x, y)$</p>
+                                <h4>ベクトルの演算</h4>
+                                <ul>
+                                    <li><strong>和:</strong> $\\vec{a} + \\vec{b} = (x_a+x_b, y_a+y_b)$</li>
+                                    <li><strong>差:</strong> $\\vec{a} - \\vec{b} = (x_a-x_b, y_a-y_b)$</li>
+                                    <li><strong>実数倍:</strong> $k\\vec{a} = (kx, ky)$</li>
+                                </ul>
+                                <h4>ベクトルの大きさ</h4>
+                                <p>成分表示されたベクトル $\\vec{a} = (x, y)$ の大きさ $|\\vec{a}|$ は、</p>
+                                <div class="math-display">$$|\\vec{a}| = \\sqrt{x^2 + y^2}$$</div>
+                                <h4>単位ベクトル</h4>
+                                <p>大きさが1のベクトルを単位ベクトルといいます。</p>
+                                <h4>ベクトルの平行条件</h4>
+                                <p>2つのベクトル $\\vec{a}, \\vec{b}$ が平行であるとき、$\\vec{b} = k\\vec{a}$ となる実数 $k$ が存在する。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>空間ベクトル</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>平面ベクトルと同様に、空間内の大きさと向きを持つ量です。成分表示は $(x, y, z)$ となります。</p>
+                                <h4>ベクトルの成分表示と大きさ</h4>
+                                <p>$\\vec{a} = (x, y, z)$ の大きさ $|\\vec{a}|$ は、</p>
+                                <div class="math-display">$$|\\vec{a}| = \\sqrt{x^2 + y^2 + z^2}$$</div>
+                                <p>空間内の2点間の距離や内分点・外分点の公式も、平面の場合と同様に $z$ 成分を追加することで拡張されます。</p>
+                                <h4>空間における直線と平面の方程式 (発展)</h4>
+                                <p>空間内の直線や平面もベクトルを用いて表現できます。</p>
+                                <ul>
+                                    <li><strong>直線のベクトル方程式:</strong> 点Aを通り、方向ベクトル $\\vec{d}$ に平行な直線上の点Pの位置ベクトル $\\vec{p}$ は、$\\vec{p} = \\vec{a} + t\\vec{d}$ （$t$ は実数）</li>
+                                    <li><strong>平面のベクトル方程式:</strong> 点Aを通り、法線ベクトル $\\vec{n}$ に垂直な平面上の点Pの位置ベクトル $\\vec{p}$ は、$(\\vec{p} - \\vec{a}) \\cdot \\vec{n} = 0$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>ベクトルの内積</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>内積の定義</h4>
+                                <p>2つのベクトル $\\vec{a}, \\vec{b}$ のなす角を $\\theta$ とするとき、内積 $\\vec{a} \\cdot \\vec{b}$ は、</p>
+                                <div class="math-display">$$\\vec{a} \\cdot \\vec{b} = |\\vec{a}| |\\vec{b}| \\cos \\theta$$</div>
+                                <p>成分表示では、$\\vec{a} = (x_1, y_1)$, $\\vec{b} = (x_2, y_2)$ のとき、</p>
+                                <div class="math-display">$$\\vec{a} \\cdot \\vec{b} = x_1 x_2 + y_1 y_2$$</div>
+                                <p>空間ベクトルの場合も同様に $z$ 成分を加えます。</p>
+                                <h4>内積の性質</h4>
+                                <ul>
+                                    <li>$\\vec{a} \\cdot \\vec{a} = |\\vec{a}|^2$</li>
+                                    <li>$\\vec{a} \\cdot \\vec{b} = \\vec{b} \\cdot \\vec{a}$</li>
+                                    <li>$\\vec{a} \\cdot (\\vec{b} + \\vec{c}) = \\vec{a} \\cdot \\vec{b} + \\vec{a} \\cdot \\vec{c}$</li>
+                                </ul>
+                                <h4>ベクトルの垂直条件</h4>
+                                <p>2つのベクトル $\\vec{a}, \\vec{b}$ が垂直であるとき、内積は0になります。</p>
+                                <div class="math-display">$$\\vec{a} \\cdot \\vec{b} = 0$$</div>
+                                <p>（ただし、$\\vec{a} \\ne \\vec{0}$, $\\vec{b} \\ne \\vec{0}$）</p>
+                                <h4>なす角の計算</h4>
+                                <p>内積の定義から、2つのベクトルのなす角 $\\theta$ を求めることができます。</p>
+                                <div class="math-display">$$\\cos \\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}| |\\vec{b}|}$$</div>
+                                <h4>ベクトルの成分と内積の応用</h4>
+                                <p>ベクトルを用いて図形の性質や幾何学的な問題を解くことができます。例えば、三角形の面積を求める際に、2つのベクトルの成分から内積を計算し、$\\sin \\theta$ を求めることで面積を導くことが可能です。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>位置ベクトル、点の存在範囲</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>位置ベクトル</h4>
+                                <p>座標平面（空間）の任意の点Oを始点とするベクトルを、その点の「位置ベクトル」といいます。点Aの位置ベクトルを $\\vec{a}$ と書きます。</p>
+                                <p>2点A, Bを結ぶベクトル $\\overrightarrow{AB}$ は、位置ベクトルを用いて $\\vec{b} - \\vec{a}$ と表せます。</p>
+                                <h4>内分点・外分点の位置ベクトル</h4>
+                                <p>2点A, Bの位置ベクトルを $\\vec{a}, \\vec{b}$ とするとき、線分ABを $m:n$ に内分する点Pの位置ベクトル $\\vec{p}$ は、</p>
+                                <div class="math-display">$$\\vec{p} = \\frac{n\\vec{a} + m\\vec{b}}{m+n}$$</div>
+                                <p>中点の場合は $\\frac{\\vec{a} + \\vec{b}}{2}$ です。</p>
+                                <p>外分点の場合は $n$ を $-n$ に置き換えます。</p>
+                                <h4>重心の位置ベクトル</h4>
+                                <p>三角形ABCの頂点の位置ベクトルを $\\vec{a}, \\vec{b}, \\vec{c}$ とするとき、重心Gの位置ベクトル $\\vec{g}$ は、</p>
+                                <div class="math-display">$$\\vec{g} = \\frac{\\vec{a} + \\vec{b} + \\vec{c}}{3}$$</div>
+                                <h4>点の存在範囲</h4>
+                                <p>位置ベクトルを用いて、ある条件を満たす点の存在範囲を図形的に考察します。</p>
+                                <p><strong>例:</strong> $\\vec{p} = s\\vec{a} + t\\vec{b}$ （$s+t=1$）のとき、点Pは直線AB上の点です。</p>
+                                <p><strong>例:</strong> $\\vec{p} = s\\vec{a} + t\\vec{b}$ （$s+t=1, s \\ge 0, t \\ge 0$）のとき、点Pは線分AB上の点です。</p>
+                                <p><strong>例:</strong> $\\vec{p} = s\\vec{a} + t\\vec{b}$ （$0 \\le s \\le 1, 0 \\le t \\le 1$）のとき、点Pは平行四辺形OACB（Oは始点）の内部および周上です。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'probability-statistics-B': {
+                title: "確率分布と統計的推測",
+                subject: "IIB",
+                icon: "fas fa-chart-pie",
+                content: `
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>確率変数と確率分布</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>確率変数</h4>
+                                <p>試行の結果によって値が決まる変数を確率変数といいます。通常、大文字のX, Yなどで表されます。</p>
+                                <h4>確率分布</h4>
+                                <p>確率変数がとる値と、それぞれの値をとる確率の対応関係を示したものです。確率分布表やグラフで表されます。</p>
+                                <p><strong>確率の条件:</strong></p>
+                                <ul>
+                                    <li>各確率 $P(X=x_i) \\ge 0$</li>
+                                    <li>すべての確率の合計は1: $\\sum P(X=x_i) = 1$</li>
+                                </ul>
+                                <h4>期待値 (平均) $E(X)$</h4>
+                                <p>確率変数がとる値と、その確率の積の合計です。データの平均値に相当します。</p>
+                                <div class="math-display">$$E(X) = \\sum x_i P(X=x_i)$$</div>
+                                <h4>分散 $V(X)$ と標準偏差 $\\sigma(X)$</h4>
+                                <p>確率変数の散らばりの度合いを示す指標です。</p>
+                                <div class="math-display">
+                                    $$V(X) = E((X - E(X))^2) = E(X^2) - (E(X))^2$$
+                                    $$\\sigma(X) = \\sqrt{V(X)}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>二項分布</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>ある試行を $n$ 回繰り返し、各試行で「成功」か「失敗」のいずれかの結果が得られる場合（ベルヌーイ試行）、成功する回数Xが従う確率分布を二項分布といいます。</p>
+                                <p>成功確率を $p$ とすると、二項分布 $B(n, p)$ に従う確率変数Xが $k$ 回成功する確率は、</p>
+                                <div class="math-display">$$P(X=k) = {_n C_k} p^k (1-p)^{n-k}$$</div>
+                                <h4>二項分布の期待値・分散・標準偏差</h4>
+                                <div class="math-display">
+                                    $$E(X) = np$$
+                                    $$V(X) = np(1-p)$$
+                                    $$\\sigma(X) = \\sqrt{np(1-p)}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>正規分布</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <p>連続型確率変数で最も重要な確率分布の一つです。左右対称な釣鐘型のグラフ（正規分布曲線）を持ち、多くの自然現象や社会現象のデータに当てはまります。</p>
+                                <p>平均 $\\mu$、標準偏差 $\\sigma$ の正規分布を $N(\\mu, \\sigma^2)$ と書きます。</p>
+                                <h4>標準正規分布</h4>
+                                <p>平均0、標準偏差1の正規分布 $N(0, 1)$ を標準正規分布といいます。任意の正規分布に従う確率変数Xは、次の式で標準正規分布に従う確率変数Zに変換できます。</p>
+                                <div class="math-display">$$Z = \\frac{X - \\mu}{\\sigma}$$</div>
+                                <p>標準正規分布表を用いて、特定の範囲の確率を求めます。</p>
+                                <h4>二項分布の正規分布による近似</h4>
+                                <p>$n$ が大きい二項分布は、正規分布で近似することができます。$n$ が十分大きいとき、$B(n, p)$ は $N(np, np(1-p))$ で近似されます。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>統計的推測の基礎 (母集団と標本、推定、検定)</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>母集団と標本</h4>
+                                <p>標本のデータから、母集団の性質を推測するのが統計的推測の目的です。</p>
+                                <ul>
+                                    <li><strong>母集団:</strong> 調査対象となるすべてのデータ（例: 日本の全高校生の身長）。</li>
+                                    <li><strong>標本:</strong> 母集団から無作為に抽出された一部のデータ（例: 日本の高校生1000人の身長）。</li>
+                                </ul>
+                                <h4>標本平均の分布</h4>
+                                <p>母集団が平均 $\\mu$、標準偏差 $\\sigma$ のとき、大きさ $n$ の無作為標本から得られる標本平均 $\\bar{X}$ は、</p>
+                                <ul>
+                                    <li>期待値 $E(\\bar{X}) = \\mu$</li>
+                                    <li>標準偏差 $\\sigma(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}}$</li>
+                                </ul>
+                                <p>また、$n$ が大きいとき、標本平均の分布は正規分布に近似されます（中心極限定理）。</p>
+                                <h4>推定</h4>
+                                <p>標本データから母集団の未知のパラメータ（平均、割合など）を推測すること。</p>
+                                <ul>
+                                    <li><strong>点推定:</strong> 1つの値で推定する（例: 標本平均を母平均の推定値とする）。</li>
+                                    <li><strong>区間推定:</strong> ある確率（信頼度）でパラメータが含まれると予想される区間を推定する（信頼区間）。</li>
+                                </ul>
+                                <p>母平均の信頼区間（信頼度95%の場合）は、$\\bar{X} - 1.96 \\frac{\\sigma}{\\sqrt{n}} \\le \\mu \\le \\bar{X} + 1.96 \\frac{\\sigma}{\\sqrt{n}}$ で与えられます。</p>
+                                <h4>仮説検定 (発展)</h4>
+                                <p>母集団のパラメータに関する仮説が正しいかどうかを、標本データに基づいて統計的に判断することです。</p>
+                                <p>帰無仮説（$H_0$）と対立仮説（$H_1$）を設定し、有意水準（$\\alpha$）のもとで検定を行います。</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'formulas-theorems': {
+                title: "公式・定理集",
+                subject: "all", // This topic will appear in both subjects
+                icon: "fas fa-book-open",
+                content: `
+                    <p>高校数学 数I・A・II・Bで学習する主要な公式と定理をまとめました。学習の確認や問題演習の際に活用してください。</p>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>数I・A の公式・定理</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>数と式 (数I)</h4>
+                                <h5>乗法公式 (展開の公式)</h5>
+                                <div class="math-display">
+                                    $$(a+b)^2 = a^2 + 2ab + b^2$$
+                                    $$(a-b)^2 = a^2 - 2ab + b^2$$
+                                    $$(a+b)(a-b) = a^2 - b^2$$
+                                    $$(x+a)(x+b) = x^2 + (a+b)x + ab$$
+                                    $$(a+b+c)^2 = a^2+b^2+c^2+2ab+2bc+2ca$$
+                                </div>
+                                <h5>因数分解の公式</h5>
+                                <div class="math-display">
+                                    $$a^2 + 2ab + b^2 = (a+b)^2$$
+                                    $$a^2 - 2ab + b^2 = (a-b)^2$$
+                                    $$a^2 - b^2 = (a+b)(a-b)$$
+                                    $$x^2 + (a+b)x + ab = (x+a)(x+b)$$
+                                    $$acx^2+(ad+bc)x+bd = (ax+b)(cx+d)$$
+                                </div>
+                                <h5>根号の計算・二重根号</h5>
+                                <div class="math-display">
+                                    $$\\sqrt{a^2 b} = a\\sqrt{b} \\quad (a>0, b>0)$$
+                                    $$\\sqrt{A \\pm 2\\sqrt{B}} = \\sqrt{a} \\pm \\sqrt{b} \\quad (A=a+b, B=ab, a>0, b>0)$$
+                                </div>
+                                <h5>絶対値</h5>
+                                <div class="math-display">
+                                    $$|a| = \\begin{cases} a & (a \\ge 0) \\\\ -a & (a < 0) \\end{cases}$$
+                                </div>
+
+                                <h4>集合と論理 (数A)</h4>
+                                <h5>集合の記号</h5>
+                                <ul>
+                                    <li>要素: $\\in$</li>
+                                    <li>部分集合: $\\subset$</li>
+                                    <li>共通部分: $\\cap$</li>
+                                    <li>和集合: $\\cup$</li>
+                                    <li>補集合: $\\bar{A}$ または $A^c$</li>
+                                    <li>空集合: $\\emptyset$</li>
+                                    <li>全体集合: $U$</li>
+                                    <li>要素の個数: $n(A)$</li>
+                                </ul>
+                                <div class="math-display">$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$</div>
+                                <h5>必要条件・十分条件</h5>
+                                <ul>
+                                    <li>$P \\Rightarrow Q$ が真のとき、PはQであるための十分条件、QはPであるための必要条件。</li>
+                                    <li>$P \\Leftrightarrow Q$ が真のとき、PはQであるための必要十分条件。</li>
+                                </ul>
+                                <h5>逆・裏・対偶</h5>
+                                <p>元の命題 $P \\Rightarrow Q$ に対して</p>
+                                <ul>
+                                    <li>逆: $Q \\Rightarrow P$</li>
+                                    <li>裏: $\\bar{P} \\Rightarrow \\bar{Q}$</li>
+                                    <li>対偶: $\\bar{Q} \\Rightarrow \\bar{P}$</li>
+                                </ul>
+                                <p>元の命題とその対偶の真偽は一致します。</p>
+
+                                <h4>二次関数 (数I)</h4>
+                                <h5>二次関数の標準形 (頂点)</h5>
+                                <div class="math-display">$$y = a(x-p)^2 + q$$</div>
+                                <h5>二次方程式の解の公式</h5>
+                                <div class="math-display">$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$</div>
+                                <h5>判別式 ($D$)</h5>
+                                <div class="math-display">$$D = b^2 - 4ac$$</div>
+                                <ul>
+                                    <li>$D > 0$: 異なる2つの実数解</li>
+                                    <li>$D = 0$: 重解</li>
+                                    <li>$D < 0$: 実数解なし</li>
+                                </ul>
+                                <h5>解と係数の関係</h5>
+                                <div class="math-display">
+                                    $$\\alpha + \\beta = -\\frac{b}{a}$$
+                                    $$\\alpha \\beta = \\frac{c}{a}$$
+                                </div>
+
+                                <h4>図形と計量 (数I)</h4>
+                                <h5>三平方の定理 (ピタゴラスの定理)</h5>
+                                <div class="math-display">$$a^2 + b^2 = c^2$$</div>
+                                <h5>三角比の定義</h5>
+                                <div class="math-display">
+                                    $$\\sin \\theta = \\frac{対辺}{斜辺}$$
+                                    $$\\cos \\theta = \\frac{隣辺}{斜辺}$$
+                                    $$\\tan \\theta = \\frac{対辺}{隣辺}$$
+                                </div>
+                                <h5>三角比の相互関係</h5>
+                                <div class="math-display">
+                                    $$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$
+                                    $$\\sin^2 \\theta + \\cos^2 \\theta = 1$$
+                                    $$1 + \\tan^2 \\theta = \\frac{1}{\\cos^2 \\theta}$$
+                                </div>
+                                <h5>正弦定理</h5>
+                                <div class="math-display">$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$$</div>
+                                <h5>余弦定理</h5>
+                                <div class="math-display">
+                                    $$a^2 = b^2 + c^2 - 2bc \\cos A$$
+                                    $$b^2 = c^2 + a^2 - 2ca \\cos B$$
+                                    $$c^2 = a^2 + b^2 - 2ab \\cos C$$
+                                </div>
+                                <h5>三角形の面積の公式</h5>
+                                <div class="math-display">$$S = \\frac{1}{2}bc \\sin A$$</div>
+                                <h5>ヘロンの公式</h5>
+                                <div class="math-display">$$s = \\frac{a+b+c}{2}, \\quad S = \\sqrt{s(s-a)(s-b)(s-c)}$$</div>
+
+                                <h4>図形の性質 (数A)</h4>
+                                <h5>三角形の五心</h5>
+                                <ul>
+                                    <li>外心: 3辺の垂直二等分線の交点。外接円の中心。</li>
+                                    <li>内心: 3つの内角の二等分線の交点。内接円の中心。</li>
+                                    <li>重心: 3つの中線の交点。各中線を $2:1$ に内分。</li>
+                                    <li>垂心: 3つの頂点から対辺に下ろした垂線の交点。</li>
+                                    <li>傍心: 1つの内角の二等分線と、他の2つの外角の二等分線の交点。</li>
+                                </ul>
+                                <h5>チェバの定理</h5>
+                                <div class="math-display">$$\\frac{BD}{DC} \\cdot \\frac{CE}{EA} \\cdot \\frac{AF}{FB} = 1$$</div>
+                                <h5>メネラウスの定理</h5>
+                                <div class="math-display">$$\\frac{AD}{DB} \\cdot \\frac{BE}{EC} \\cdot \\frac{CF}{FA} = 1$$</div>
+
+                                <h4>整数の性質 (数A)</h4>
+                                <h5>約数と倍数、素因数分解</h5>
+                                <ul>
+                                    <li>素数: 1とその数自身以外に正の約数を持たない自然数。</li>
+                                    <li>素因数分解: 自然数を素数の積の形に表すこと。</li>
+                                </ul>
+                                <h5>最大公約数と最小公倍数</h5>
+                                <ul>
+                                    <li>最大公約数 (GCD): 共通する約数のうち最大のもの。</li>
+                                    <li>最小公倍数 (LCM): 共通する倍数のうち最小のもの。</li>
+                                </ul>
+                                <h5>互除法 (ユークリッドの互除法)</h5>
+                                <p>2つの自然数の最大公約数を効率的に求めるアルゴリズム。</p>
+                                <h5>一次不定方程式</h5>
+                                <p>$ax + by = c$ の形の整数解を求める方程式。</p>
+                                <h5>N進法</h5>
+                                <p>数をN個の数字で表現する方法。</p>
+
+                                <h4>場合の数と確率 (数A)</h4>
+                                <h5>順列 ($_n P_r$)</h5>
+                                <div class="math-display">$$_n P_r = \\frac{n!}{(n-r)!}$$</div>
+                                <h5>組合せ ($_n C_r$)</h5>
+                                <div class="math-display">$$_n C_r = \\frac{n!}{r!(n-r)!}$$</div>
+                                <h5>確率の基本公式</h5>
+                                <div class="math-display">$$P(A) = \\frac{(事象Aの起こる場合の数)}{(全ての場合の数)}$$</div>
+                                <h5>余事象の確率</h5>
+                                <div class="math-display">$$P(\\bar{A}) = 1 - P(A)$$</div>
+                                <h5>和事象の確率</h5>
+                                <div class="math-display">$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$</div>
+                                <h5>独立事象</h5>
+                                <div class="math-display">$$P(A \\cap B) = P(A)P(B)$$</div>
+                                <h5>条件付き確率</h5>
+                                <div class="math-display">$$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$$</div>
+
+                                <h4>データの分析 (数I)</h4>
+                                <h5>平均値 ($\\bar{x}$)</h5>
+                                <div class="math-display">$$\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i$$</div>
+                                <h5>分散 ($s^2$)</h5>
+                                <div class="math-display">$$s^2 = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})^2$$</div>
+                                <h5>標準偏差 ($s$)</h5>
+                                <div class="math-display">$$s = \\sqrt{s^2}$$</div>
+                                <h5>共分散 ($s_{xy}$)</h5>
+                                <div class="math-display">$$s_{xy} = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})(y_i - \\bar{y})$$</div>
+                                <h5>相関係数 ($r$)</h5>
+                                <div class="math-display">$$r = \\frac{s_{xy}}{s_x s_y}$$</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>数II・B の公式・定理</span>
+                            <span class="accordion-icon">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <h4>様々な式 (数II)</h4>
+                                <h5>3次式の展開・因数分解の公式</h5>
+                                <div class="math-display">
+                                    $$(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$$
+                                    $$(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$$
+                                    $$a^3 + b^3 = (a+b)(a^2 - ab + b^2)$$
+                                    $$a^3 - b^3 = (a-b)(a^2 + ab + b^2)$$
+                                </div>
+                                <h5>複素数と虚数単位</h5>
+                                <p>$i^2 = -1$</p>
+                                <h5>剰余の定理</h5>
+                                <div class="math-display">$$P(x) を x-k で割った余りは P(k)$$</div>
+                                <h5>因数定理</h5>
+                                <div class="math-display">$$P(k)=0 \\iff (x-k) は P(x) の因数$$</div>
+                                <h5>三次方程式の解と係数の関係</h5>
+                                <div class="math-display">
+                                    $$\\alpha + \\beta + \\gamma = -\\frac{b}{a}$$
+                                    $$\\alpha \\beta + \\beta \\gamma + \\gamma \\alpha = \\frac{c}{a}$$
+                                    $$\\alpha \\beta \\gamma = -\\frac{d}{a}$$
+                                </div>
+                                <h5>相加平均・相乗平均の不等式</h5>
+                                <div class="math-display}">$$\\frac{a+b}{2} \\ge \\sqrt{ab} \\quad (a \\ge 0, b \\ge 0)$$</div>
+                                <p>等号は $a=b$ のときに成り立ちます。</p>
+
+                                <h4>図形と方程式 (数II)</h4>
+                                <h5>2点間の距離</h5>
+                                <div class="math-display">$$AB = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$</div>
+                                <h5>内分点・外分点</h5>
+                                <div class="math-display">$$P\\left(\\frac{nx_1+mx_2}{m+n}, \\frac{ny_1+my_2}{m+n}\\right)$$</div>
+                                <h5>2直線の垂直条件 (傾き $m_1, m_2$)</h5>
+                                <div class="math-display">$$m_1 m_2 = -1$$</div>
+                                <h5>点 $(x_0, y_0)$ と直線 $ax+by+c=0$ の距離</h5>
+                                <div class="math-display">$$d = \\frac{|ax_0+by_0+c|}{\\sqrt{a^2+b^2}}$$</div>
+                                <h5>2直線のなす角 (発展)</h5>
+                                <p>2直線 $y=m_1 x + c_1$, $y=m_2 x + c_2$ のなす角を $\\theta$ とすると、</p>
+                                <div class="math-display}>$$\\tan \\theta = \\left|\\frac{m_1 - m_2}{1 + m_1 m_2}\\right|$$</div>
+                                <h5>円の標準形 (中心 $(a,b)$, 半径 $r$)</h5>
+                                <div class="math-display">$$(x-a)^2 + (y-b)^2 = r^2$$</div>
+                                <h5>円 $x^2+y^2=r^2$ 上の点 $(x_1, y_1)$ における接線</h5>
+                                <div class="math-display">$$x_1 x + y_1 y = r^2$$</div>
+
+                                <h4>指数・対数関数 (数II)</h4>
+                                <h5>指数法則</h5>
+                                <div class="math-display">
+                                    $$a^p a^q = a^{p+q}$$
+                                    $$\\frac{a^p}{a^q} = a^{p-q}$$
+                                    $$(a^p)^q = a^{pq}$$
+                                </div>
+                                <h5>対数の定義</h5>
+                                <div class="math-display">$$a^p = M \\iff p = \\log_a M$$</div>
+                                <h5>対数の性質</h5>
+                                <div class="math-display">
+                                    $$\\log_a 1 = 0, \\quad \\log_a a = 1$$
+                                    $$\\log_a MN = \\log_a M + \\log_a N$$
+                                    $$\\log_a \\frac{M}{N} = \\log_a M - \\log_a N$$
+                                    $$\\log_a M^k = k \\log_a M$$
+                                </div>
+                                <h5>底の変換公式</h5>
+                                <div class="math-display">$$\\log_a b = \\frac{\\log_c b}{\\log_c a}$$</div>
+
+                                <h4>三角関数 (数II)</h4>
+                                <h5>弧度法と扇形</h5>
+                                <div class="math-display">
+                                    $$180^\\circ = \\pi \\text{ラジアン}$$
+                                    $$l = r\\theta, \\quad S = \\frac{1}{2}r^2\\theta$$
+                                </div>
+                                <h5>三角関数の定義 (単位円)</h5>
+                                <div class="math-display">
+                                    $$\\sin \\theta = y, \\quad \\cos \\theta = x, \\quad \\tan \\theta = \\frac{y}{x}$$
+                                </div>
+                                <h5>三角関数の相互関係</h5>
+                                <div class="math-display">
+                                    $$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$
+                                    $$\\sin^2 \\theta + \\cos^2 \\theta = 1$$
+                                    $$1 + \\tan^2 \\theta = \\frac{1}{\\cos^2 \\theta}$$
+                                </div>
+                                <h5>加法定理</h5>
+                                <div class="math-display">
+                                    $$\\sin(\\alpha \\pm \\beta) = \\sin \\alpha \\cos \\beta \\pm \\cos \\alpha \\sin \\beta$$
+                                    $$\\cos(\\alpha \\pm \\beta) = \\cos \\alpha \\cos \\beta \\mp \\sin \\alpha \\sin \\beta$$
+                                    $$\\tan(\\alpha \\pm \\beta) = \\frac{\\tan \\alpha \\pm \\tan \\beta}{1 \\mp \\tan \\alpha \\tan \\beta}$$
+                                </div>
+                                <h5>2倍角の公式</h5>
+                                <div class="math-display">
+                                    $$\\sin 2\\alpha = 2 \\sin \\alpha \\cos \\alpha$$
+                                    $$\\cos 2\\alpha = \\cos^2 \\alpha - \\sin^2 \\alpha = 2 \\cos^2 \\alpha - 1 = 1 - 2 \\sin^2 \\alpha$$
+                                    $$\\tan 2\\alpha = \\frac{2 \\tan \\alpha}{1 - \\tan^2 \\alpha}$$
+                                </div>
+                                <h5>半角の公式</h5>
+                                <div class="math-display">
+                                    $$\\sin^2 \\frac{\\alpha}{2} = \\frac{1 - \\cos \\alpha}{2}$$
+                                    $$\\cos^2 \\frac{\\alpha}{2} = \\frac{1 + \\cos \\alpha}{2}$$
+                                </div>
+                                <h5>和積・積和の公式</h5>
+                                <div class="math-display">
+                                    $$\\sin A + \\sin B = 2 \\sin \\frac{A+B}{2} \\cos \\frac{A-B}{2}$$
+                                    $$\\cos A + \\cos B = 2 \\cos \\frac{A+B}{2} \\cos \\frac{A-B}{2}$$
+                                    $$2 \\sin \\alpha \\cos \\beta = \\sin(\\alpha+\\beta) + \\sin(\\alpha-\\beta)$$
+                                </div>
+                                <h5>三角関数の合成</h5>
+                                <div class="math-display">$$a \\sin \\theta + b \\cos \\theta = \\sqrt{a^2+b^2} \\sin (\\theta + \\alpha)$$</div>
+
+                                <h4>微分法 (数II)</h4>
+                                <h5>導関数の定義</h5>
+                                <div class="math-display">$$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$</div>
+                                <h5>微分公式</h5>
+                                <div class="math-display">$$(x^n)' = nx^{n-1}, \\quad (c)' = 0$$</div>
+                                <h5>積の微分 (発展)</h5>
+                                <div class="math-display}>$$(f(x)g(x))' = f'(x)g(x) + f(x)g'(x)$$</div>
+                                <h5>商の微分 (発展)</h5>
+                                <div class="math-display}>$$\\left(\\frac{f(x)}{g(x)}\\right)' = \\frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2}$$</div>
+                                <h5>接線の方程式</h5>
+                                <div class="math-display">$$y - f(a) = f'(a)(x - a)$$</div>
+
+                                <h4>積分法 (数II)</h4>
+                                <h5>不定積分</h5>
+                                <div class="math-display">$$\\int x^n dx = \\frac{1}{n+1}x^{n+1} + C \\quad (n \\ne -1)$$</div>
+                                <h5>定積分の定義</h5>
+                                <div class="math-display">$$\\int_a^b f(x) dx = F(b) - F(a)$$</div>
+                                <h5>面積の公式</h5>
+                                <div class="math-display">$$S = \\int_a^b |f(x)| dx, \\quad S = \\int_a^b |f(x) - g(x)| dx$$</div>
+                                <h5>速度と距離</h5>
+                                <div class="math-display}>$$移動距離 = \\int_{t_1}^{t_2} |v(t)| dt$$</div>
+                                <h5>置換積分 (発展)</h5>
+                                <div class="math-display}>$$\\int f(g(x))g'(x) dx = \\int f(u) du \\quad (u=g(x))$$</div>
+                                <h5>部分積分 (発展)</h5>
+                                <div class="math-display}>$$\\int f'(x)g(x) dx = f(x)g(x) - \\int f(x)g'(x) dx$$</div>
+
+                                <h4>数列 (数B)</h4>
+                                <h5>等差数列</h5>
+                                <div class="math-display">
+                                    $$a_n = a_1 + (n-1)d$$
+                                    $$S_n = \\frac{n(a_1 + a_n)}{2} = \\frac{n\\{2a_1 + (n-1)d\\}}{2}$$
+                                </div>
+                                <h5>等比数列</h5>
+                                <div class="math-display">
+                                    $$a_n = a_1 r^{n-1}$$
+                                    $$S_n = \\frac{a_1(r^n - 1)}{r - 1} \\quad (r \\ne 1)$$
+                                </div>
+                                <h5>階差数列</h5>
+                                <div class="math-display">$$a_n = a_1 + \\sum_{k=1}^{n-1} b_k \\quad (n \\ge 2)$$</div>
+                                <h5>漸化式の解法パターン (例)</h5>
+                                <ul>
+                                    <li>$a_{n+1} = p a_n + q$: 特性方程式 $c = pc + q$ を解き、$a_{n+1}-c = p(a_n-c)$ の形に変形して等比数列に帰着。</li>
+                                    <li>$a_{n+1} = p a_n + q^n$: 両辺を $q^{n+1}$ で割るなどして変形。</li>
+                                </ul>
+                                <h5>Σの公式</h5>
+                                <div class="math-display">
+                                    $$\\sum_{k=1}^{n} k = \\frac{1}{2}n(n+1)$$
+                                    $$\\sum_{k=1}^{n} k^2 = \\frac{1}{6}n(n+1)(2n+1)$$
+                                    $$\\sum_{k=1}^{n} k^3 = \\left(\\frac{1}{2}n(n+1)\\right)^2$$
+                                </div>
+
+                                <h4>ベクトル (数B)</h4>
+                                <h5>ベクトルの大きさ</h5>
+                                <div class="math-display">$$|\\vec{a}| = \\sqrt{x^2 + y^2} \\quad (平面)$$</div>
+                                <div class="math-display">$$|\\vec{a}| = \\sqrt{x^2 + y^2 + z^2} \\quad (空間)$$</div>
+                                <h5>内積の定義</h5>
+                                <div class="math-display}>$$\\vec{a} \\cdot \\vec{b} = |\\vec{a}| |\\vec{b}| \\cos \\theta = x_1 x_2 + y_1 y_2$$</div>
+                                <h5>ベクトルの垂直条件</h5>
+                                <div class="math-display}>$$\\vec{a} \\cdot \\vec{b} = 0$$</div>
+                                <h5>位置ベクトル (内分点)</h5>
+                                <div class="math-display}>$$\\vec{p} = \\frac{n\\vec{a} + m\\vec{b}}{m+n}$$</div>
+                                <h5>重心の位置ベクトル</h5>
+                                <div class="math-display}>$$\\vec{g} = \\frac{\\vec{a} + \\vec{b} + \\vec{c}}{3}$$</div>
+                                <h5>直線のベクトル方程式</h5>
+                                <p>点Aの位置ベクトル $\\vec{a}$ を通り、方向ベクトル $\\vec{d}$ に平行な直線上の点Pの位置ベクトル $\\vec{p}$ は、</p>
+                                <div class="math-display}>$$\\vec{p} = \\vec{a} + t\\vec{d} \\quad (t は実数)$$</div>
+                                <h5>平面のベクトル方程式</h5>
+                                <p>点Aの位置ベクトル $\\vec{a}$ を通り、法線ベクトル $\\vec{n}$ に垂直な平面上の点Pの位置ベクトル $\\vec{p}$ は、</p>
+                                <div class="math-display}>$$(\\vec{p} - \\vec{a}) \\cdot \\vec{n} = 0$$</div>
+                                <h5>点の存在範囲 (例)</h5>
+                                <div class="math-display}>$$\\vec{p} = s\\vec{a} + t\\vec{b} \\quad (s+t=1, s \\ge 0, t \\ge 0) \\implies 線分AB$$</div>
+                                <h5>外積 (発展)</h5>
+                                <p>2つのベクトルが張る平行四辺形の面積や、3次元空間での法線ベクトルを求める際に利用されます。</p>
+                                <div class="math-display}>$$\\vec{a} = (a_x, a_y, a_z), \\vec{b} = (b_x, b_y, b_z) のとき、$$</div>
+                                <div class="math-display}>$$\\vec{a} \\times \\vec{b} = (a_y b_z - a_z b_y, a_z b_x - a_x b_z, a_x b_y - a_y b_x)$$</div>
+
+                                <h4>確率分布と統計的推測 (数B)</h4>
+                                <h5>期待値 (平均)</h5>
+                                <div class="math-display}>$$E(X) = \\sum x_i P(X=x_i)$$</div>
+                                <h5>期待値の性質</h5>
+                                <div class="math-display}>$$E(aX+b) = aE(X) + b$$</div>
+                                <h5>分散と標準偏差</h5>
+                                <div class="math-display}>
+                                    $$V(X) = E(X^2) - (E(X))^2$$
+                                    $$\\sigma(X) = \\sqrt{V(X)}$$
+                                </div>
+                                <h5>分散の性質</h5>
+                                <div class="math-display}>$$V(aX+b) = a^2 V(X)$$</div>
+                                <h5>二項分布の確率</h5>
+                                <div class="math-display}>$$P(X=k) = {_n C_k} p^k (1-p)^{n-k}$$</div>
+                                <h5>二項分布の期待値・分散・標準偏差</h5>
+                                <div class="math-display}>
+                                    $$E(X) = np$$
+                                    $$V(X) = np(1-p)$$
+                                    $$\\sigma(X) = \\sqrt{np(1-p)}$$
+                                </div>
+                                <h5>標準化</h5>
+                                <div class="math-display}>$$Z = \\frac{X - \\mu}{\\sigma}$$</div>
+                                <h5>標本平均の標準偏差</h5>
+                                <div class="math-display}>$$\\sigma(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}}$$</div>
+                                <h5>母平均の信頼区間 (信頼度95%)</h5>
+                                <div class="math-display}>$$\\bar{X} - 1.96 \\frac{\\sigma}{\\sqrt{n}} \\le \\mu \\le \\bar{X} + 1.96 \\frac{\\sigma}{\\sqrt{n}}$$</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Function to render topic buttons for a given subject
+        function renderTopicButtons(subjectFilter) {
+            navTopicsContainer.innerHTML = ''; // Clear existing buttons
+            sectionTitle.textContent = `${subjectFilter === 'IA' ? '数I・A' : '数II・B'} のトピック一覧`;
+
+            // Filter topics based on subject or 'all'
+            const filteredTopicKeys = Object.keys(topics).filter(key => {
+                const topic = topics[key];
+                return topic.subject === subjectFilter || topic.subject === "all";
+            });
+
+            // Define a specific order for topics within each subject
+            const orderIA = [
+                'numbers', 'sets-logic', 'quadratic', 'geometry',
+                'properties-of-figures', 'properties-of-integers', 'probability', 'data',
+                'formulas-theorems' // Always last
+            ];
+            const orderIIB = [
+                'various-expressions-II', 'geometry-equations-II', 'exponential-logarithmic-II',
+                'trigonometric-II', 'differentiation-II', 'integration-II',
+                'sequences-B', 'vectors-B', 'probability-statistics-B',
+                'formulas-theorems' // Always last
+            ];
+
+            let sortedTopicKeys;
+            if (subjectFilter === 'IA') {
+                sortedTopicKeys = orderIA.filter(key => filteredTopicKeys.includes(key));
+            } else { // IIB
+                sortedTopicKeys = orderIIB.filter(key => filteredTopicKeys.includes(key));
+            }
+
+
+            sortedTopicKeys.forEach(key => {
+                const topic = topics[key];
+                const button = document.createElement('button');
+                button.className = 'nav-button';
+                button.dataset.topic = key;
+                button.innerHTML = `<i class="${topic.icon}"></i><span>${topic.title}</span>`;
+                navTopicsContainer.appendChild(button);
+            });
+
+            // Add event listeners to the newly created buttons
+            navTopicsContainer.querySelectorAll('.nav-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const topicKey = event.currentTarget.dataset.topic;
+                    loadTopic(topicKey);
+                });
+            });
+
+            // Load the first topic of the new subject automatically
+            if (sortedTopicKeys.length > 0) {
+                loadTopic(sortedTopicKeys[0]);
+            } else {
+                topicTitle.textContent = "トピックを選択してください";
+                topicContent.innerHTML = "<p>科目を選択し、左のメニューから学習したいトピックを選んでください。各トピックの基本的な解説と関連する知識が表示されます。</p><p class='mt-6 text-gray-400'>このサイトは、高校数学の基礎をしっかりと理解し、公式や定理を効率的に確認するための手助けとなることを目指しています。</p>";
+            }
+        }
+
+        // Function to load topic content
+        function loadTopic(topicKey) {
+            const topic = topics[topicKey];
+            if (topic) {
+                topicTitle.textContent = topic.title;
+                topicContent.innerHTML = topic.content;
+
+                // Initialize accordions for the newly loaded content
+                initializeAccordions(topicContent);
+
+                // Update active button styling across all nav-button elements
+                document.querySelectorAll('.nav-button').forEach(button => {
+                    button.classList.remove('active');
+                });
+                const activeButton = navTopicsContainer.querySelector(`.nav-button[data-topic="${topicKey}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+
+                // Re-render MathJax equations after content is loaded
+                if (window.MathJax) {
+                    MathJax.typesetPromise([topicContent]);
+                }
+            } else {
+                topicTitle.textContent = "エラー";
+                topicContent.innerHTML = "<p>選択されたトピックは見つかりませんでした。</p>";
+            }
+            // Scroll to the content display section
+            document.getElementById('content-display').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Event listeners for subject selection buttons
+        subjectSelection.addEventListener('click', (event) => {
+            const button = event.target.closest('.subject-button');
+            if (button) {
+                const selectedSubject = button.dataset.subject;
+
+                // Remove active class from all subject buttons
+                document.querySelectorAll('.subject-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // Add active class to the clicked button
+                button.classList.add('active');
+
+                currentSubject = selectedSubject; // Update current subject
+                renderTopicButtons(currentSubject); // Render topics for the selected subject
+            }
+        });
+
+        // Back to Top button logic
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling down 300px
+                backToTopButton.classList.add('visible');
+                backToTopButton.classList.remove('invisible');
+            } else {
+                backToTopButton.classList.remove('visible');
+                backToTopButton.classList.add('invisible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initial setup on page load
+        window.onload = function() {
+            // Initially, no subject is selected, so the topic list is empty.
+            // We can optionally auto-select 数I・A or keep it empty until user clicks.
+            // Let's auto-select 数I・A for a better initial experience.
+            const initialSubjectButton = document.querySelector('.subject-button[data-subject="IA"]');
+            if (initialSubjectButton) {
+                initialSubjectButton.click(); // Simulate a click on the 数I・A button
+            }
+        };
+    </script>
+</body>
+</html>
